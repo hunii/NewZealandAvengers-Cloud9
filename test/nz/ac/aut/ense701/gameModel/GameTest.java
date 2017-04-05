@@ -537,4 +537,17 @@ public class GameTest extends junit.framework.TestCase
         }
         return success;
     }
+    
+    /**
+     * exits the game
+     * @param exitBut
+     * Jack Kim
+     */
+    @Test
+    public void TestExitGame() {
+        int exitBut = 0;
+        
+        assertEquals(0, exitBut);
+        
+    }
 }

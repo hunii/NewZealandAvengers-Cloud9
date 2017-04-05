@@ -173,11 +173,11 @@ public class KiwiCountUI
         btnCount = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        introButton = new javax.swing.JButton();
+        instructionButton = new javax.swing.JButton();
+        developerButton = new javax.swing.JButton();
+        newGameButton = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         msgLabel = new javax.swing.JLabel();
@@ -543,23 +543,33 @@ public class KiwiCountUI
         jLabel1.setForeground(new java.awt.Color(204, 0, 0));
         jLabel1.setText("Kiwi Avengers");
 
-        jButton1.setText("Game Story");
-
-        jButton2.setText("How to play");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        introButton.setText("Game Story");
+        introButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                introButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Developers");
-
-        jButton4.setText("New Game");
-
-        jButton5.setText("Close");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        instructionButton.setText("How to play");
+        instructionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                instructionButtonActionPerformed(evt);
+            }
+        });
+
+        developerButton.setText("Developers");
+
+        newGameButton.setText("New Game");
+        newGameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newGameButtonActionPerformed(evt);
+            }
+        });
+
+        exitButton.setText("Close");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
             }
         });
 
@@ -571,15 +581,15 @@ public class KiwiCountUI
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(instructionButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(introButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(developerButton)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -587,11 +597,11 @@ public class KiwiCountUI
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(introButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(instructionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(developerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -694,13 +704,22 @@ public class KiwiCountUI
         game.countKiwi();
     }//GEN-LAST:event_btnCountActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        int exitBut = JOptionPane.showConfirmDialog(this, "Do you want to exit the game?", "Exit?",JOptionPane.OK_CANCEL_OPTION);
+        game.exitGame(exitBut);
+    }//GEN-LAST:event_exitButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void instructionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructionButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_instructionButtonActionPerformed
+
+    private void introButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_introButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_introButtonActionPerformed
+
+    private void newGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newGameButtonActionPerformed
     
     /**
      * Creates and initialises the island grid.
@@ -733,11 +752,10 @@ public class KiwiCountUI
     private javax.swing.JButton btnMoveSouth;
     private javax.swing.JButton btnMoveWest;
     private javax.swing.JButton btnUse;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton developerButton;
+    private javax.swing.JButton exitButton;
+    private javax.swing.JButton instructionButton;
+    private javax.swing.JButton introButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -747,6 +765,7 @@ public class KiwiCountUI
     private javax.swing.JList listInventory;
     private javax.swing.JList listObjects;
     private javax.swing.JLabel msgLabel;
+    private javax.swing.JButton newGameButton;
     private javax.swing.JPanel pnlIsland;
     private javax.swing.JProgressBar progBackpackSize;
     private javax.swing.JProgressBar progBackpackWeight;

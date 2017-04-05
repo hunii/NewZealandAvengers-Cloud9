@@ -138,6 +138,17 @@ public class Game
         return isMovePossible;
     }
     
+    /**
+     * exits the game
+     * @param exitBut
+     * Jack Kim
+     */
+    public void exitGame(int exitBut) {
+        if(exitBut ==0) {
+            System.exit(0);
+        }
+    } 
+
       /**
      * Get terrain for position
      * @param row
