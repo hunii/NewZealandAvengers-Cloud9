@@ -533,6 +533,22 @@ public class Game
         return successfulMove;
     }
     
+    /**
+     * Method that return string of game story introduction
+     * @return game story as text
+     */
+    public String getGameStory(){
+        String story = "                                           Game Story: \n"+
+            "*******************************************************************\n" + 
+            "Welcome to the environmental journey in the land of the long white clouds New Zealand.\n"
+                    + "Go on a mission to make new zealand environment friendly.\n"
+                    + "Saving five cities that are in need.\n"
+                    + "Escaping the predators that are in the way to collect items \n"
+                    + "that will help the five cities become environment friendly.\n"
+                    + "Lets nurture the nature, so that we can have a better future.";
+        
+        return story;
+    }
 
     
     /**

@@ -1,8 +1,11 @@
 package nz.ac.aut.ense701.gui;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
@@ -566,7 +569,7 @@ public class KiwiCountUI
             }
         });
 
-        exitButton.setText("Close");
+        exitButton.setText("End Game");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitButtonActionPerformed(evt);
@@ -589,7 +592,7 @@ public class KiwiCountUI
                 .addGap(18, 18, 18)
                 .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(exitButton)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -714,7 +717,13 @@ public class KiwiCountUI
     }//GEN-LAST:event_instructionButtonActionPerformed
 
     private void introButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_introButtonActionPerformed
-        // TODO add your handling code here:
+        UIManager UI=new UIManager();
+        Font font = new Font(Font.SANS_SERIF, Font.BOLD, 15);
+        UIManager.put("OptionPane.messageFont", font);
+        UIManager.put("OptionPane.buttonFont", font);
+            
+        UI.put("Panel.background", Color.WHITE);
+        JOptionPane.showMessageDialog(this,game.getGameStory(), "Introduction to Game Story", JOptionPane.INFORMATION_MESSAGE );
     }//GEN-LAST:event_introButtonActionPerformed
 
     private void newGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtonActionPerformed
