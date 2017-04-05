@@ -45,7 +45,7 @@ public class Player
        this.alive = true;
        this.backpack = new HashSet<Item>();
     }   
-    
+
     /*****************************************************************************************************
      * Accessor methods
      ****************************************************************************************************/
@@ -317,6 +317,7 @@ public class Player
             {
                 success = backpack.add(item);
                 // when item is collected, it is no longer "on the island"
+
                 if ( success )
                 {
                     // assign it the "not on island" position

@@ -391,6 +391,7 @@ public class Game
         boolean success = (item instanceof Item) && (player.collect((Item)item));
         if(success)
         {
+            msg.collecItemMsg((Item)item);
             // player has picked up an item: remove from grid square
             island.removeOccupant(player.getPosition(), (Item)item);
             
@@ -418,6 +419,7 @@ public class Game
             success = island.addOccupant(player.getPosition(), item);
             if ( success )
             {
+                msg.dropItemMsg(item);
                 // drop successful: everybody has to know that
                 notifyGameEventListeners();
             }
@@ -467,6 +469,7 @@ public class Game
                     }
             }
         }
+        msg.useItemMsg((Item)item);
         updateGameState();
         return success;
     }
@@ -508,7 +511,9 @@ public class Game
             player.moveToPosition(newPosition, terrain);
             island.updatePlayerPosition(player);
             successfulMove = true;
-                    
+            
+            //Send msg
+            msg.playerMoveMsg(direction);
             // Is there a hazard?
             checkForHazard();
 
@@ -517,7 +522,7 @@ public class Game
         return successfulMove;
     }
     
-    
+
     
     /**
      * Adds a game event listener.
@@ -783,6 +788,7 @@ public class Game
         player = new Player(pos, playerName, 
                 playerMaxStamina, 
                 playerMaxBackpackWeight, playerMaxBackpackSize);
+        msg = new GameMessage(player);
         island.updatePlayerPosition(player);
     }
 
@@ -850,11 +856,11 @@ public class Game
     private Set<GameEventListener> eventListeners;
     
     private final double MIN_REQUIRED_CATCH = 0.8;
+    public static GameMessage msg;
         
     private String winMessage = "";
     private String loseMessage  = "";
     private String playerMessage  = "";   
-
     
 
 
