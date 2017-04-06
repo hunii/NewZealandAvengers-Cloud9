@@ -249,8 +249,12 @@ public class Game
      * @return player name
      */
     public String getPlayerName()
-    {
+    {                
         return player.getName();
+    }
+    
+    public void setPlayerName(String name){
+        player.setName(name);
     }
 
     /**

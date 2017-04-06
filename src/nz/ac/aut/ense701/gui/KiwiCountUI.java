@@ -94,7 +94,7 @@ public class KiwiCountUI
         
         // update player information
         int[] playerValues = game.getPlayerValues();
-        txtPlayerName.setText(game.getPlayerName());
+        txtPlayerName.setText(InputPlayerName());
         progPlayerStamina.setMaximum(playerValues[Game.MAXSTAMINA_INDEX]);
         progPlayerStamina.setValue(playerValues[Game.STAMINA_INDEX]);
         progBackpackWeight.setMaximum(playerValues[Game.MAXWEIGHT_INDEX]);
@@ -126,6 +126,25 @@ public class KiwiCountUI
         btnMoveSouth.setEnabled(game.isPlayerMovePossible(MoveDirection.SOUTH));
         btnMoveWest.setEnabled( game.isPlayerMovePossible(MoveDirection.WEST));
         
+    }
+    
+    private String InputPlayerName(){
+        
+        String pName = "";
+        
+        while("".equals(pName)) {
+            pName = JOptionPane.showInputDialog("Create your character's name.");
+            if(pName == null){
+                game.exitGame(0);
+            }
+            if(pName.length() > 15){
+                JOptionPane.showMessageDialog(this, "Please re-insert within 15 characters.", "nameAlert", JOptionPane.INFORMATION_MESSAGE);
+                pName = null;
+            }
+        }
+        game.setPlayerName(pName);
+        
+        return game.getPlayerName();
     }
     
     private void updateMsg(){
