@@ -346,7 +346,30 @@ public class Game
                 {
                     result = false;
                 }
-            }            
+            }
+            else if(itemToUse instanceof QuestItem){
+                result =  false;
+                QuestItem questItem = (QuestItem)itemToUse;
+                
+                //player position
+                Position playerPosition = player.getPosition();
+                
+                Occupant[] occupants = island.getOccupants(playerPosition);
+                
+                for(Occupant o : occupants){
+                    if( o instanceof City){
+                        City city = (City)o;
+                        if(city.getType() == CityType.Auckland && questItem.getName().equals("Bee"))
+                            result =  true;
+                        else if(city.getType() == CityType.Christchurch && questItem.getName().equals("Building Tool"))
+                            result =  true;
+                        else if(city.getType() == CityType.Oamaru && questItem.getName().equals("Blue Penguin"))
+                            result =  true;
+                        else if(city.getType() == CityType.Bluff && questItem.getName().equals("Oyster"))
+                            result =  true;
+                    }
+                }
+            }
         }
         return result;
     }
@@ -484,6 +507,14 @@ public class Game
                     }
             }
         }
+        else if(item instanceof Medicine){
+            Medicine med = (Medicine)item;
+            //consume health item and icnrease health
+            //
+            
+            player.drop(med);
+            notifyGameEventListeners();
+        }
         msg.useItemMsg((Item)item);
         updateGameState();
         return success;
@@ -530,7 +561,8 @@ public class Game
             //Send msg
             msg.playerMoveMsg(direction);
             // Is there a hazard?
-            checkForHazard();
+            checkForOccupant();
+            
 
             updateGameState();            
         }
@@ -679,18 +711,20 @@ public class Game
      * Checks if the player has met a hazard and applies hazard impact.
      * Fatal hazards kill player and end game.
      */
-    private void checkForHazard()
+    private void checkForOccupant()
     {
         //check if there are hazards
         for ( Occupant occupant : island.getOccupants(player.getPosition())  )
         {
-            if ( occupant instanceof Hazard )
-            {
+            if ( occupant instanceof Hazard ){
                handleHazard((Hazard)occupant) ;
+            }else if ( occupant instanceof Predator ){
+               handlePredator((Predator)occupant) ;
             }
         }
     }
     
+        
     /**
      * Apply impact of hazard
      * @param hazard to handle
@@ -725,6 +759,16 @@ public class Game
                 this.setPlayerMessage(hazard.getDescription() + " has reduced your stamina.");
             }
         }
+    }
+    
+        /**
+     * Apply impact of predator
+     * @param predator to handle
+     */
+    private void handlePredator(Predator predator) {
+        
+        predator.getAttackPower();
+                
     }
     
     
@@ -846,6 +890,23 @@ public class Game
                 double size   = input.nextDouble();
                 occupant = new Tool(occPos, occName, occDesc, weight, size);
             }
+            else if ( occType.equals("C") )
+            {
+                occupant = new City(occPos, occName, occDesc);
+            }
+            else if ( occType.equals("Q") )
+            {
+                double weight = input.nextDouble();
+                double size   = input.nextDouble();
+                occupant = new QuestItem(occPos, occName, occDesc, weight, size);
+            }
+            else if ( occType.equals("M") )
+            {
+                double weight = input.nextDouble();
+                double size   = input.nextDouble();
+                double cure = input.nextDouble();
+                occupant = new Medicine(occPos, occName, occDesc, weight, size, cure);
+            }
             else if ( occType.equals("E") )
             {
                 double weight = input.nextDouble();
@@ -865,7 +926,8 @@ public class Game
             }
             else if ( occType.equals("P") )
             {
-                occupant = new Predator(occPos, occName, occDesc);
+                double attack = input.nextDouble();
+                occupant = new Predator(occPos, occName, occDesc,attack);
                 totalPredators++;
             }
             else if ( occType.equals("F") )

@@ -7,14 +7,18 @@
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/GameState.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/Kiwi.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/GameEventListener.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/Medicine.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/Hazard.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/Position.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gui/KiwiCountUI.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/Tool.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/test/gameModelNew/GameMessageTest.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/Fauna.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/CityType.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/GameMessage.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/GridSquare.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/test/nz/ac/aut/ense701/gameModel/IslandTest.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/City.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/Player.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/Food.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/Game.java</file>
@@ -22,10 +26,13 @@
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/test/nz/ac/aut/ense701/gameModel/FoodTest.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/Predator.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/test/nz/ac/aut/ense701/gameModel/HazardTest.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/test/nz/ac/aut/ense701/gameModel/GridSquareTest.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/Terrain.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/Item.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/test/nz/ac/aut/ense701/gameModel/PredatorTest.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/test/nz/ac/aut/ense701/gameModel/GameTest.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/main/Main.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/QuestItem.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/Occupant.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gameModel/MoveDirection.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiIsland/src/nz/ac/aut/ense701/gui/GridSquarePanel.java</file>

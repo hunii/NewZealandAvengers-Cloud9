@@ -72,6 +72,10 @@ public class GameMessage {
             Food fooditem = (Food)item;
             msg += " and recovered "+(int)fooditem.getEnergy()+"% stamina";
         }
+        if(item instanceof Medicine){
+            Medicine med = (Medicine)item;
+            msg += " and recovered "+(int)med.getEnergy()+"% health";
+        }
         msg += ".";
     }
     

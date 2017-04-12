@@ -34,6 +34,7 @@ public class KiwiCountUI
         setAsGameListener();
         initComponents();
         initIslandGrid();
+        InputPlayerName();
         update();
     }
     
@@ -94,7 +95,7 @@ public class KiwiCountUI
         
         // update player information
         int[] playerValues = game.getPlayerValues();
-        txtPlayerName.setText(InputPlayerName());
+        txtPlayerName.setText(game.getPlayerName());
         progPlayerStamina.setMaximum(playerValues[Game.MAXSTAMINA_INDEX]);
         progPlayerStamina.setValue(playerValues[Game.STAMINA_INDEX]);
         progBackpackWeight.setMaximum(playerValues[Game.MAXWEIGHT_INDEX]);
