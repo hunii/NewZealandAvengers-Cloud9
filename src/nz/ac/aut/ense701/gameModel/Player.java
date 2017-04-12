@@ -19,10 +19,11 @@ public class Player
     private String    name;
     private final double    maxStamina;
     private double    stamina;
+    private final double    maxHealth;
+    private double    health;
     private boolean   alive;
     private Set<Item> backpack;
     private final double    maxBackpackWeight;
-    private final double    maxBackpackSize;   
     
     /**
      * Constructs a new player object.
@@ -30,18 +31,19 @@ public class Player
      * @param position the initial position of the player
      * @param name the name of the player
      * @param maxStamina the maximum stamina level of the player
+     * @param MaxHealth the maximum health level of the player
      * @param maxBackpackWeight the most weight that can be in a backpack
-     * @param maxBackpackSize the maximum size items that will fit in the backpack     
      */    
     public Player(Position position, String name, double maxStamina,
-                  double maxBackpackWeight, double maxBackpackSize)
+                  double maxHealth, double maxBackpackWeight)
     {
        this.position          = position;
        this.name              = name;
        this.maxStamina        = maxStamina;
-       this.stamina = maxStamina;
+       this.stamina           = maxStamina;
+       this.maxHealth         = maxHealth;
+       this.health            = maxHealth;
        this.maxBackpackWeight = maxBackpackWeight;
-       this.maxBackpackSize = maxBackpackSize;
        this.alive = true;
        this.backpack = new HashSet<Item>();
     }   
@@ -131,29 +133,22 @@ public class Player
         return (this.stamina >= getStaminaNeededToMove(terrain));
     }
     
-        
     /**
-     * Get current size of backpack.
-     * 
-     * @return currentBackpackSize
+     * Get the maximum health for the player.
+     * @return maximum health
      */
-    public double getCurrentBackpackSize(){
-        double totalSize = 0.0;
-        for ( Item item : backpack ) 
-        {
-            totalSize += item.getSize();
-        }
-        return totalSize;
+    public double getMaximumHealthLevel()
+    {
+       return this.maxHealth;
     }
 
     /**
-     * Gets the maximum Backpack size.
-     * 
-     * @return the maximum backpack size
+     * Get the current health for the player.
+     * @return current health of the player
      */
-    public double getMaximumBackpackSize()
+    public double getHealthLevel()
     {
-        return maxBackpackSize;
+       return this.health;
     }
 
     
@@ -296,6 +291,40 @@ public class Player
     }
     
     /**
+     * Decrease the stamina level by reduction.
+     * 
+     * @param reduction the amount of stamina to reduce
+     */
+    public void reduceHealth(double reduction)
+    {
+       if ( reduction > 0 )
+       { 
+          this.health -= reduction;
+          if ( this.health < 0.0 )
+          {
+             this.health = 0.0; 
+          }
+       }    
+    }    
+    
+    /**
+     * Increase the stamina level of the player.
+     * 
+     * @param increase the amount of stamina increase
+     */
+    public void increaseHealth(double increase)
+    {
+       if ( increase > 0 && isAlive() )
+       {         
+          this.health += increase;    
+       }
+       if ( health > maxHealth )
+       {
+           health = maxHealth;
+       }
+    }
+    
+    /**
      * Collect an item if it will fit in player's backpack.
      * 
      * @param item to collect
@@ -305,9 +334,7 @@ public class Player
     {
         boolean success = false;
         if ( item != null && item.isOkToCarry() )
-        {
-            double  addedSize   = getCurrentBackpackSize() + item.getSize();
-            boolean enoughRoom  = (addedSize <= this.maxBackpackSize);
+        {;
             double  addedWeight = getCurrentBackpackWeight() + item.getWeight();
             //Will weight fit in backpack?
             boolean notTooHeavy = (addedWeight <= this.maxBackpackWeight);
@@ -320,7 +347,7 @@ public class Player
                 additionalTrap = (tool.isTrap() && this.hasTrap());
             }       
                    
-            if ( enoughRoom && notTooHeavy && !additionalTrap)
+            if ( notTooHeavy && !additionalTrap)
             {
                 success = backpack.add(item);
                 // when item is collected, it is no longer "on the island"

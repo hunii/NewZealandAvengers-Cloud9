@@ -23,10 +23,10 @@ public class Game
     //Constants shared with UI to provide player data
     public static final int STAMINA_INDEX = 0;
     public static final int MAXSTAMINA_INDEX = 1;
+    public static final int HEALTH_INDEX = 0;
+    public static final int MAXHEALTH_INDEX = 1;
     public static final int MAXWEIGHT_INDEX = 2;
     public static final int WEIGHT_INDEX = 3;
-    public static final int MAXSIZE_INDEX = 4;
-    public static final int SIZE_INDEX = 5;
     
     /**
      * A new instance of Kiwi island that reads data from "IslandData.txt".
@@ -208,10 +208,10 @@ public class Game
         int[] playerValues = new int[6];
         playerValues[STAMINA_INDEX ]= (int) player.getStaminaLevel();
         playerValues[MAXSTAMINA_INDEX]= (int) player.getMaximumStaminaLevel();
+        playerValues[HEALTH_INDEX ]= (int) player.getHealthLevel();
+        playerValues[MAXHEALTH_INDEX]= (int) player.getMaximumHealthLevel();
         playerValues[MAXWEIGHT_INDEX ]= (int) player.getMaximumBackpackWeight();
         playerValues[WEIGHT_INDEX]= (int) player.getCurrentBackpackWeight();
-        playerValues[MAXSIZE_INDEX ]= (int) player.getMaximumBackpackSize();
-        playerValues[SIZE_INDEX]= (int) player.getCurrentBackpackSize();
             
         return playerValues;
         
@@ -508,11 +508,12 @@ public class Game
             }
         }
         else if(item instanceof Medicine){
-            Medicine med = (Medicine)item;
-            //consume health item and icnrease health
-            //
-            
+            Medicine med = (Medicine) item;
+            // player gets health boost from medicine
+            player.increaseHealth(med.getEnergy());
+            // player has consumed the food: remove from inventory
             player.drop(med);
+            // use successful: everybody has to know that
             notifyGameEventListeners();
         }
         msg.useItemMsg((Item)item);
@@ -633,7 +634,7 @@ public class Game
         else if(predatorsTrapped == totalPredators)
         {
             state = GameState.WON;
-            message = "You win! You have done an excellent job and trapped all the predators.";
+            message = "You win! You have done an excellent job and saved all the NZ cities.";
             this.setWinMessage(message);
         }
         else if(kiwiCount == totalKiwis)
@@ -743,20 +744,20 @@ public class Game
                 this.setPlayerMessage("Sorry your predator trap is broken. You will need to find tools to fix it before you can use it again.");
             }
         } 
-        else // hazard reduces player's stamina
+        else // hazard reduces player's health
         {
             double impact = hazard.getImpact();
-            // Impact is a reduction in players energy by this % of Max Stamina
-            double reduction = player.getMaximumStaminaLevel() * impact;
-            player.reduceStamina(reduction);
-            // if stamina drops to zero: player is dead
-            if (player.getStaminaLevel() <= 0.0) {
+            // Impact is a reduction in players energy by this % of Max Health
+            double reduction = player.getMaximumHealthLevel() * impact;
+            player.reduceHealth(reduction);
+            // if health drops to zero: player is dead
+            if (player.getHealthLevel() <= 0.0) {
                 player.kill();
-                this.setLoseMessage(" You have run out of stamina");
+                this.setLoseMessage(" You have run out of health");
             }
             else // Let player know what happened
             {
-                this.setPlayerMessage(hazard.getDescription() + " has reduced your stamina.");
+                this.setPlayerMessage(hazard.getDescription() + " has reduced your health.");
             }
         }
     }
@@ -856,13 +857,14 @@ public class Game
         int    playerPosRow            = input.nextInt();
         int    playerPosCol            = input.nextInt();
         double playerMaxStamina        = input.nextDouble();
+        double playerMaxHealth         = input.nextDouble();
         double playerMaxBackpackWeight = input.nextDouble();
-        double playerMaxBackpackSize   = input.nextDouble();
         
         Position pos = new Position(island, playerPosRow, playerPosCol);
         player = new Player(pos, playerName, 
-                playerMaxStamina, 
-                playerMaxBackpackWeight, playerMaxBackpackSize);
+                playerMaxStamina,
+                playerMaxHealth,
+                playerMaxBackpackWeight);
         msg = new GameMessage(player);
         island.updatePlayerPosition(player);
     }
