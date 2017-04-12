@@ -167,9 +167,9 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="lblBackpackWeight">
+                    <Component class="javax.swing.JLabel" name="lblPlayerHealth">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Backpack Weight:"/>
+                        <Property name="text" type="java.lang.String" value="Health:"/>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
@@ -181,7 +181,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JProgressBar" name="progBackpackWeight">
+                    <Component class="javax.swing.JProgressBar" name="progPlayerHealth">
                       <Properties>
                         <Property name="stringPainted" type="boolean" value="true"/>
                       </Properties>
@@ -191,9 +191,9 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="lblBackpackSize">
+                    <Component class="javax.swing.JLabel" name="lblBackpackWeight">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Backpack Size:"/>
+                        <Property name="text" type="java.lang.String" value="Backpack Weight:"/>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
@@ -205,7 +205,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JProgressBar" name="progBackpackSize">
+                    <Component class="javax.swing.JProgressBar" name="progBackpackWeight">
                       <Properties>
                         <Property name="stringPainted" type="boolean" value="true"/>
                       </Properties>

@@ -752,7 +752,8 @@ public class KiwiCountUI
     }//GEN-LAST:event_introButtonActionPerformed
 
     private void newGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtonActionPerformed
-        // TODO add your handling code here:
+        int restartBut = JOptionPane.showConfirmDialog(this, "Do you want to Restart the game?", "Restart?",JOptionPane.OK_CANCEL_OPTION);
+        game.restartGame(restartBut);
     }//GEN-LAST:event_newGameButtonActionPerformed
     
     /**

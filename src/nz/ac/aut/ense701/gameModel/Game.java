@@ -149,6 +149,17 @@ public class Game
         }
     } 
 
+        /**
+     * exits the game
+     * @param exitBut
+     * Jack Kim
+     */
+    public void restartGame(int restartBut) {
+        if(restartBut ==0) {
+            createNewGame();
+        }
+    } 
+    
       /**
      * Get terrain for position
      * @param row
