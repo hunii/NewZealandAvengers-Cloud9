@@ -98,10 +98,10 @@ public class KiwiCountUI
         txtPlayerName.setText(game.getPlayerName());
         progPlayerStamina.setMaximum(playerValues[Game.MAXSTAMINA_INDEX]);
         progPlayerStamina.setValue(playerValues[Game.STAMINA_INDEX]);
+        progPlayerHealth.setMaximum(playerValues[Game.MAXHEALTH_INDEX]);
+        progPlayerHealth.setValue(playerValues[Game.HEALTH_INDEX]);
         progBackpackWeight.setMaximum(playerValues[Game.MAXWEIGHT_INDEX]);
         progBackpackWeight.setValue(playerValues[Game.WEIGHT_INDEX]);
-        progBackpackSize.setMaximum(playerValues[Game.MAXSIZE_INDEX]);
-        progBackpackSize.setValue(playerValues[Game.SIZE_INDEX]);
         
         //Update Kiwi and Predator information
         txtKiwisCounted.setText(Integer.toString(game.getKiwiCount()) );
@@ -143,7 +143,11 @@ public class KiwiCountUI
                 pName = null;
             }
         }
+        
         game.setPlayerName(pName);
+        
+        // Displays player's name
+        txtPlayerName.setText(game.getPlayerName());
         
         return game.getPlayerName();
     }
@@ -171,10 +175,10 @@ public class KiwiCountUI
         txtPlayerName = new javax.swing.JLabel();
         javax.swing.JLabel lblPlayerStamina = new javax.swing.JLabel();
         progPlayerStamina = new javax.swing.JProgressBar();
+        javax.swing.JLabel lblPlayerHealth = new javax.swing.JLabel();
+        progPlayerHealth = new javax.swing.JProgressBar();
         javax.swing.JLabel lblBackpackWeight = new javax.swing.JLabel();
         progBackpackWeight = new javax.swing.JProgressBar();
-        javax.swing.JLabel lblBackpackSize = new javax.swing.JLabel();
-        progBackpackSize = new javax.swing.JProgressBar();
         lblPredators = new javax.swing.JLabel();
         lblKiwisCounted = new javax.swing.JLabel();
         txtKiwisCounted = new javax.swing.JLabel();
@@ -207,6 +211,7 @@ public class KiwiCountUI
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kiwi Count");
+        getContentPane().setLayout(new java.awt.BorderLayout());
 
         pnlContent.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         pnlContent.setLayout(new java.awt.BorderLayout(10, 0));
@@ -265,10 +270,29 @@ public class KiwiCountUI
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         pnlPlayerData.add(progPlayerStamina, gridBagConstraints);
 
-        lblBackpackWeight.setText("Backpack Weight:");
+        lblPlayerHealth.setText("Health:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        pnlPlayerData.add(lblPlayerHealth, gridBagConstraints);
+
+        progPlayerHealth.setStringPainted(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
+        pnlPlayerData.add(progPlayerHealth, gridBagConstraints);
+
+        lblBackpackWeight.setText("Backpack Weight:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
@@ -277,31 +301,12 @@ public class KiwiCountUI
         progBackpackWeight.setStringPainted(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         pnlPlayerData.add(progBackpackWeight, gridBagConstraints);
-
-        lblBackpackSize.setText("Backpack Size:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        pnlPlayerData.add(lblBackpackSize, gridBagConstraints);
-
-        progBackpackSize.setStringPainted(true);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
-        pnlPlayerData.add(progBackpackSize, gridBagConstraints);
 
         lblPredators.setText("Predators Left:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -796,8 +801,8 @@ public class KiwiCountUI
     private javax.swing.JLabel msgLabel;
     private javax.swing.JButton newGameButton;
     private javax.swing.JPanel pnlIsland;
-    private javax.swing.JProgressBar progBackpackSize;
     private javax.swing.JProgressBar progBackpackWeight;
+    private javax.swing.JProgressBar progPlayerHealth;
     private javax.swing.JProgressBar progPlayerStamina;
     private javax.swing.JLabel txtKiwisCounted;
     private javax.swing.JLabel txtPlayerName;
