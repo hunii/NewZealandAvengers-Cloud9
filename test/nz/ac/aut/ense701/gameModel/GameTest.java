@@ -115,13 +115,11 @@ public class GameTest extends junit.framework.TestCase
     
     @Test
     public void testGetPlayerValues(){
-        int[] values = game.getPlayerValues();
-        assertEquals("Check Max backpack size.", values[Game.MAXSIZE_INDEX], 5);    
+        int[] values = game.getPlayerValues(); 
         assertEquals("Check max stamina.", values[Game.MAXSTAMINA_INDEX], 100);
         assertEquals("Check max backpack weight.", values[Game.MAXWEIGHT_INDEX], 10);
         assertEquals("Check initialstamina", values[Game.STAMINA_INDEX], 100);
         assertEquals("Check initial backpack weight.", values[Game.WEIGHT_INDEX], 0);
-        assertEquals("Check initial backp[ack size.", values[Game.SIZE_INDEX], 0);
     }
     
     @Test
@@ -162,7 +160,7 @@ public class GameTest extends junit.framework.TestCase
         //Trap can be used if there is a predator here
         Item valid = new Tool(playerPosition,"Trap", "A predator trap",1.0, 1.0);
         //Add predator
-        Predator rat = new Predator(playerPosition,"Rat", "A norway rat");
+        Predator rat = new Predator(playerPosition,"Rat", "A norway rat",10.0);
         island.addOccupant(playerPosition, rat);
         assertTrue("Should be able to use", game.canUse(valid));
     }
@@ -300,7 +298,7 @@ public class GameTest extends junit.framework.TestCase
         assertTrue("Player should have trap",player.hasItem(trap));
         
         // Can only use trap if there is a predator.
-        Predator predator = new Predator(playerPosition,"Rat", "Norway rat");
+        Predator predator = new Predator(playerPosition,"Rat", "Norway rat",10.0);
         island.addOccupant(playerPosition, predator);
         game.useItem(trap);
         assertTrue("Player should still have trap",player.hasItem(trap));
@@ -321,7 +319,7 @@ public class GameTest extends junit.framework.TestCase
         assertTrue("Player should have trap",player.hasItem(trap));
         
         // Can only use trap if there is a predator.
-        Predator predator = new Predator(playerPosition,"Rat", "Norway rat");
+        Predator predator = new Predator(playerPosition,"Rat", "Norway rat",10.0);
         island.addOccupant(playerPosition, predator);
         trap.setBroken();
         game.useItem(trap);
