@@ -211,7 +211,6 @@ public class KiwiCountUI
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kiwi Count");
-        getContentPane().setLayout(new java.awt.BorderLayout());
 
         pnlContent.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         pnlContent.setLayout(new java.awt.BorderLayout(10, 0));
@@ -586,6 +585,11 @@ public class KiwiCountUI
         });
 
         developerButton.setText("Developers");
+        developerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                developerButtonActionPerformed(evt);
+            }
+        });
 
         newGameButton.setText("New Game");
         newGameButton.addActionListener(new java.awt.event.ActionListener() {
@@ -755,6 +759,11 @@ public class KiwiCountUI
         int restartBut = JOptionPane.showConfirmDialog(this, "Do you want to Restart the game?", "Restart?",JOptionPane.OK_CANCEL_OPTION);
         game.restartGame(restartBut);
     }//GEN-LAST:event_newGameButtonActionPerformed
+
+    private void developerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_developerButtonActionPerformed
+        String developer = game.getDevelopers();
+        JOptionPane.showMessageDialog(this,developer,"Version & Developers",JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_developerButtonActionPerformed
     
     /**
      * Creates and initialises the island grid.

@@ -160,6 +160,14 @@ public class Game
         }
     } 
     
+    /**
+     * Gets developer information and version 
+     * @return string of information
+     */
+    public String getDevelopers(){
+        return "Version: 0.1\n\nCredits to developers:\n  *   James Joung \n  *   TaeHyun Kim \n  *   Jack Kim \n  *   Megha Menon";
+    }
+    
       /**
      * Get terrain for position
      * @param row
