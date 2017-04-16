@@ -34,7 +34,6 @@ public class KiwiCountUI
         setAsGameListener();
         initComponents();
         initIslandGrid();
-        InputPlayerName();
         update();
     }
     
@@ -95,6 +94,9 @@ public class KiwiCountUI
         
         // update player information
         int[] playerValues = game.getPlayerValues();
+        if("New Player".equals(game.getPlayerName())){
+            InputPlayerName();
+        }
         txtPlayerName.setText(game.getPlayerName());
         progPlayerStamina.setMaximum(playerValues[Game.MAXSTAMINA_INDEX]);
         progPlayerStamina.setValue(playerValues[Game.STAMINA_INDEX]);
@@ -142,6 +144,7 @@ public class KiwiCountUI
                 JOptionPane.showMessageDialog(this, "Please re-insert within 15 characters.", "nameAlert", JOptionPane.INFORMATION_MESSAGE);
                 pName = null;
             }
+            pName = pName.replaceAll("\\s","");
         }
         
         game.setPlayerName(pName);
