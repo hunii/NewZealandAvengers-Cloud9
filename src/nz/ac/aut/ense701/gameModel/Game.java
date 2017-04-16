@@ -23,10 +23,12 @@ public class Game
     //Constants shared with UI to provide player data
     public static final int STAMINA_INDEX = 0;
     public static final int MAXSTAMINA_INDEX = 1;
-    public static final int HEALTH_INDEX = 0;
-    public static final int MAXHEALTH_INDEX = 1;
-    public static final int MAXWEIGHT_INDEX = 2;
-    public static final int WEIGHT_INDEX = 3;
+    public static final int HEALTH_INDEX = 2;
+    public static final int MAXHEALTH_INDEX = 3;
+    public static final int MAXWEIGHT_INDEX = 4;
+    public static final int WEIGHT_INDEX = 5;
+    public static final int MAXSIZE_INDEX = 6;
+    public static final int SIZE_INDEX = 7;
     
     /**
      * A new instance of Kiwi island that reads data from "IslandData.txt".
@@ -224,13 +226,15 @@ public class Game
      */
     public int[] getPlayerValues()
     {
-        int[] playerValues = new int[6];
+        int[] playerValues = new int[8];
         playerValues[STAMINA_INDEX ]= (int) player.getStaminaLevel();
         playerValues[MAXSTAMINA_INDEX]= (int) player.getMaximumStaminaLevel();
         playerValues[HEALTH_INDEX ]= (int) player.getHealthLevel();
         playerValues[MAXHEALTH_INDEX]= (int) player.getMaximumHealthLevel();
         playerValues[MAXWEIGHT_INDEX ]= (int) player.getMaximumBackpackWeight();
         playerValues[WEIGHT_INDEX]= (int) player.getCurrentBackpackWeight();
+        playerValues[MAXSIZE_INDEX ]= (int) player.getMaximumBackpackSize();
+        playerValues[SIZE_INDEX]= (int) player.getCurrentBackpackSize();
             
         return playerValues;
         
@@ -878,12 +882,13 @@ public class Game
         double playerMaxStamina        = input.nextDouble();
         double playerMaxHealth         = input.nextDouble();
         double playerMaxBackpackWeight = input.nextDouble();
+        double playerMaxBackpackSize   = input.nextDouble();
         
         Position pos = new Position(island, playerPosRow, playerPosCol);
         player = new Player(pos, playerName, 
                 playerMaxStamina,
                 playerMaxHealth,
-                playerMaxBackpackWeight);
+                playerMaxBackpackWeight, playerMaxBackpackSize);
         msg = new GameMessage(player);
         island.updatePlayerPosition(player);
     }

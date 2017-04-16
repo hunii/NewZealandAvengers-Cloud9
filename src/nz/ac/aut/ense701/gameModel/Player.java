@@ -24,6 +24,7 @@ public class Player
     private boolean   alive;
     private Set<Item> backpack;
     private final double    maxBackpackWeight;
+    private final double    maxBackpackSize;
     
     /**
      * Constructs a new player object.
@@ -33,9 +34,10 @@ public class Player
      * @param maxStamina the maximum stamina level of the player
      * @param MaxHealth the maximum health level of the player
      * @param maxBackpackWeight the most weight that can be in a backpack
+     * @param maxBackpackSize the maximum size items that will fit in the backpack     
      */    
     public Player(Position position, String name, double maxStamina,
-                  double maxHealth, double maxBackpackWeight)
+                  double maxHealth, double maxBackpackWeight, double maxBackpackSize)
     {
        this.position          = position;
        this.name              = name;
@@ -44,6 +46,7 @@ public class Player
        this.maxHealth         = maxHealth;
        this.health            = maxHealth;
        this.maxBackpackWeight = maxBackpackWeight;
+       this.maxBackpackSize = maxBackpackSize;
        this.alive = true;
        this.backpack = new HashSet<Item>();
     }   
@@ -118,6 +121,7 @@ public class Player
         staminaNeeded *= (1.0 + load);
         // and even more when the terrain is difficult
         staminaNeeded *= terrain.getDifficulty();
+        System.out.println("11111111111111111========= "+staminaNeeded);
         return staminaNeeded;
     }
 
@@ -131,6 +135,30 @@ public class Player
     public boolean hasStaminaToMove(Terrain terrain)
     {
         return (this.stamina >= getStaminaNeededToMove(terrain));
+    }
+    
+    /**
+     * Get current size of backpack.
+     * 
+     * @return currentBackpackSize
+     */
+    public double getCurrentBackpackSize(){
+        double totalSize = 0.0;
+        for ( Item item : backpack ) 
+        {
+            totalSize += item.getSize();
+        }
+        return totalSize;
+    }
+    
+    /**
+     * Gets the maximum Backpack size.
+     * 
+     * @return the maximum backpack size
+     */
+    public double getMaximumBackpackSize()
+    {
+        return maxBackpackSize;
     }
     
     /**
@@ -291,9 +319,9 @@ public class Player
     }
     
     /**
-     * Decrease the stamina level by reduction.
+     * Decrease the health level by reduction.
      * 
-     * @param reduction the amount of stamina to reduce
+     * @param reduction the amount of health to reduce
      */
     public void reduceHealth(double reduction)
     {
@@ -334,7 +362,9 @@ public class Player
     {
         boolean success = false;
         if ( item != null && item.isOkToCarry() )
-        {;
+        {
+            double  addedSize   = getCurrentBackpackSize() + item.getSize();
+            boolean enoughRoom  = (addedSize <= this.maxBackpackSize);
             double  addedWeight = getCurrentBackpackWeight() + item.getWeight();
             //Will weight fit in backpack?
             boolean notTooHeavy = (addedWeight <= this.maxBackpackWeight);
