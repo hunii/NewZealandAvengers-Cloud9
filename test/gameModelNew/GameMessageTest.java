@@ -42,7 +42,7 @@ public class GameMessageTest {
     @Before
     public void setUp() {
         this.island = new Island(20,20); 
-        this.player = new Player(new Position(island,3,3),"James", 100.0,100.0,100.0);
+        this.player = new Player(new Position(island,3,3),"James", 100.0,100.0,100.0,100.0);
         this.foodItem = new Food(new Position(island,3,3), "Sandwich", "Sandwich", 20,20,20);
         this.msg = new GameMessage(player);
     }

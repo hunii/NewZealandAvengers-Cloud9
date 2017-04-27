@@ -114,7 +114,7 @@ public class IslandTest extends junit.framework.TestCase
     public void testUpdatePlayerPosition(){
         Position newPos = new Position(testIsland, 2,3);
         assertFalse(testIsland.isExplored(newPos));
-        Player player = new Player(newPos ,"Ada Lovelace",25.0, 15.0, 20.0);
+        Player player = new Player(newPos ,"Ada Lovelace",25.0,100.0, 15.0, 20.0);
         player.moveToPosition(newPos, Terrain.SAND);
         
         testIsland.updatePlayerPosition(player);
