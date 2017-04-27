@@ -121,7 +121,6 @@ public class Player
         staminaNeeded *= (1.0 + load);
         // and even more when the terrain is difficult
         staminaNeeded *= terrain.getDifficulty();
-        System.out.println("11111111111111111========= "+staminaNeeded);
         return staminaNeeded;
     }
 

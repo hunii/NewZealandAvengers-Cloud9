@@ -910,52 +910,53 @@ public class Game
             Position occPos = new Position(island, occRow, occCol);
             Occupant occupant    = null;
 
+            // T: Tool
             if ( occType.equals("T") )
             {
                 double weight = input.nextDouble();
                 double size   = input.nextDouble();
                 occupant = new Tool(occPos, occName, occDesc, weight, size);
-            }
+            }   // C: City
             else if ( occType.equals("C") )
             {
                 occupant = new City(occPos, occName, occDesc);
-            }
+            }   // Q: Quest Item
             else if ( occType.equals("Q") )
             {
                 double weight = input.nextDouble();
                 double size   = input.nextDouble();
                 occupant = new QuestItem(occPos, occName, occDesc, weight, size);
-            }
+            }   // M: Medicine
             else if ( occType.equals("M") )
             {
                 double weight = input.nextDouble();
                 double size   = input.nextDouble();
                 double cure = input.nextDouble();
                 occupant = new Medicine(occPos, occName, occDesc, weight, size, cure);
-            }
+            }   // E: Food
             else if ( occType.equals("E") )
             {
                 double weight = input.nextDouble();
                 double size   = input.nextDouble();
                 double energy = input.nextDouble();
                 occupant = new Food(occPos, occName, occDesc, weight, size, energy);
-            }
+            }   // H: Hazard
             else if ( occType.equals("H") )
             {
                 double impact = input.nextDouble();
                 occupant = new Hazard(occPos, occName, occDesc,impact);
-            }
+            }   // /K: Kiwi
             else if ( occType.equals("K") )
             {
                 occupant = new Kiwi(occPos, occName, occDesc);
                 totalKiwis++;
-            }
+            }   // P: Predator
             else if ( occType.equals("P") )
             {
                 double attack = input.nextDouble();
                 occupant = new Predator(occPos, occName, occDesc,attack);
                 totalPredators++;
-            }
+            }   // F: Fauna
             else if ( occType.equals("F") )
             {
                 occupant = new Fauna(occPos, occName, occDesc);
