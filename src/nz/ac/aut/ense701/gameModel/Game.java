@@ -1,5 +1,6 @@
 package nz.ac.aut.ense701.gameModel;
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,6 +8,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.Set;
+import static nz.ac.aut.ense701.gameModel.GameOccupantRandomGenerator.IS_FILE_BEING_USED;
 
 /**
  * This is the class that knows the Kiwi Island game rules and state
@@ -52,6 +54,7 @@ public class Game
         predatorsTrapped = 0;
         kiwiCount = 0;
         initialiseIslandFromFile("IslandData.txt");
+        new Thread(new GameOccupantRandomGenerator("IslandData.txt")).start();
         drawIsland();
         state = GameState.PLAYING;
         winMessage = "";
@@ -839,6 +842,7 @@ public class Game
             setUpOccupants(input);
 
             input.close();
+            IS_FILE_BEING_USED = false;
         }
         catch(FileNotFoundException e)
         {
@@ -850,6 +854,8 @@ public class Game
         }
     }
 
+
+    
     /**
      * Reads terrain data and creates the terrain.
      * 
