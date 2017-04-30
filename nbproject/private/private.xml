@@ -6,11 +6,15 @@
         <group>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/Game.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/test/nz/ac/aut/ense701/gameModel/PlayerTest.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/GameEventListener.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/test/nz/ac/aut/ense701/gameModel/GridSquareTest.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/Island.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/test/gameModelNew/GameMessageTest.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/test/nz/ac/aut/ense701/gameModel/IslandTest.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/GameOccupantRandomGenerator.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/GridSquare.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/Player.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gui/KiwiCountUI.java</file>
         </group>
     </open-files>
 </project-private>

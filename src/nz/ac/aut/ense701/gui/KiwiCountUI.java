@@ -18,9 +18,7 @@ import nz.ac.aut.ense701.gameModel.MoveDirection;
  * @version July 2011
  */
 
-public class KiwiCountUI 
-    extends javax.swing.JFrame 
-    implements GameEventListener
+public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListener
 {
 
     /**
@@ -94,7 +92,7 @@ public class KiwiCountUI
         
         // update player information
         int[] playerValues = game.getPlayerValues();
-        if("New Player".equals(game.getPlayerName())){
+        if("NewPlayer".equals(game.getPlayerName())){
             InputPlayerName();
         }
         txtPlayerName.setText(game.getPlayerName());
@@ -226,7 +224,7 @@ public class KiwiCountUI
         );
         pnlIslandLayout.setVerticalGroup(
             pnlIslandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 566, Short.MAX_VALUE)
+            .addGap(0, 570, Short.MAX_VALUE)
         );
 
         pnlContent.add(pnlIsland, java.awt.BorderLayout.CENTER);
@@ -569,10 +567,11 @@ public class KiwiCountUI
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Californian FB", 3, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 0, 0));
         jLabel1.setText("Kiwi Avengers");
 
+        introButton.setForeground(new java.awt.Color(0, 0, 255));
         introButton.setText("Game Story");
         introButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -580,6 +579,7 @@ public class KiwiCountUI
             }
         });
 
+        instructionButton.setForeground(new java.awt.Color(0, 0, 255));
         instructionButton.setText("How to play");
         instructionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -587,6 +587,7 @@ public class KiwiCountUI
             }
         });
 
+        developerButton.setForeground(new java.awt.Color(0, 0, 255));
         developerButton.setText("Developers");
         developerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -594,6 +595,7 @@ public class KiwiCountUI
             }
         });
 
+        newGameButton.setForeground(new java.awt.Color(0, 0, 255));
         newGameButton.setText("New Game");
         newGameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -601,6 +603,7 @@ public class KiwiCountUI
             }
         });
 
+        exitButton.setForeground(new java.awt.Color(0, 0, 255));
         exitButton.setText("End Game");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -614,7 +617,7 @@ public class KiwiCountUI
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(instructionButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

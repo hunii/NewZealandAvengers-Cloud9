@@ -112,7 +112,7 @@ public class GameOccupantRandomGenerator implements Runnable{
     }
     
     /**
-     * String representation of random position
+     * String representation of random position integer value
      */
     private String getRandPosition(int rowol){
         return Integer.toString(rnd.nextInt(rowol-1));
