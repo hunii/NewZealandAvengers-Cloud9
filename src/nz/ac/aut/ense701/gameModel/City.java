@@ -14,9 +14,9 @@ public class City extends Occupant{
     private CityType type;
     private boolean isFixed;
     
-    public City(Position pos, String name, String description){
+    public City(Position pos, String name, String description, boolean fixed){
         super(pos, name, description);
-        isFixed = false;
+        isFixed = fixed;
         CityType cityType = getCityTypeByString(name);
         if(cityType != null)
             type = cityType;

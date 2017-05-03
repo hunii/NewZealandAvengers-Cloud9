@@ -939,7 +939,8 @@ public class Game
             }   // C: City
             else if ( occType.equals("C") )
             {
-                occupant = new City(occPos, occName, occDesc);
+                boolean fixed = input.nextBoolean();
+                occupant = new City(occPos, occName, occDesc,fixed);
             }   // Q: Quest Item
             else if ( occType.equals("Q") )
             {
