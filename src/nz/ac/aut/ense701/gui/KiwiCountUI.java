@@ -12,7 +12,7 @@ import nz.ac.aut.ense701.gameModel.GameState;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
 
 /*
- * User interface form for Kiwi Island.
+ * User interface form for Kiwi Avengers.
  * 
  * @author AS
  * @version July 2011
@@ -103,8 +103,8 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         progBackpackWeight.setMaximum(playerValues[Game.MAXWEIGHT_INDEX]);
         progBackpackWeight.setValue(playerValues[Game.WEIGHT_INDEX]);
         
-        //Update Kiwi and Predator information
-        txtKiwisCounted.setText(Integer.toString(game.getKiwiCount()) );
+        //Update City and Predator information
+        txtCitiesCounted.setText(Integer.toString(game.getCitiesRemaining())+"/"+game.getTotalCityCount() );
         txtPredatorsLeft.setText(Integer.toString(game.getPredatorsRemaining()));
         
         // update inventory list
@@ -181,8 +181,8 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         javax.swing.JLabel lblBackpackWeight = new javax.swing.JLabel();
         progBackpackWeight = new javax.swing.JProgressBar();
         lblPredators = new javax.swing.JLabel();
-        lblKiwisCounted = new javax.swing.JLabel();
-        txtKiwisCounted = new javax.swing.JLabel();
+        lblCitiesCounted = new javax.swing.JLabel();
+        txtCitiesCounted = new javax.swing.JLabel();
         txtPredatorsLeft = new javax.swing.JLabel();
         javax.swing.JPanel pnlMovement = new javax.swing.JPanel();
         btnMoveNorth = new javax.swing.JButton();
@@ -211,7 +211,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         msgLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Kiwi Count");
+        setTitle("Kiwi Avengers");
 
         pnlContent.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         pnlContent.setLayout(new java.awt.BorderLayout(10, 0));
@@ -315,19 +315,19 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlPlayerData.add(lblPredators, gridBagConstraints);
 
-        lblKiwisCounted.setText("Kiwis Counted :");
+        lblCitiesCounted.setText("Saved Cities :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        pnlPlayerData.add(lblKiwisCounted, gridBagConstraints);
+        pnlPlayerData.add(lblCitiesCounted, gridBagConstraints);
 
-        txtKiwisCounted.setText("0");
+        txtCitiesCounted.setText("0");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        pnlPlayerData.add(txtKiwisCounted, gridBagConstraints);
+        pnlPlayerData.add(txtCitiesCounted, gridBagConstraints);
 
         txtPredatorsLeft.setText("P");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -810,7 +810,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel lblKiwisCounted;
+    private javax.swing.JLabel lblCitiesCounted;
     private javax.swing.JLabel lblPredators;
     private javax.swing.JList listInventory;
     private javax.swing.JList listObjects;
@@ -820,7 +820,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
     private javax.swing.JProgressBar progBackpackWeight;
     private javax.swing.JProgressBar progPlayerHealth;
     private javax.swing.JProgressBar progPlayerStamina;
-    private javax.swing.JLabel txtKiwisCounted;
+    private javax.swing.JLabel txtCitiesCounted;
     private javax.swing.JLabel txtPlayerName;
     private javax.swing.JLabel txtPredatorsLeft;
     // End of variables declaration//GEN-END:variables

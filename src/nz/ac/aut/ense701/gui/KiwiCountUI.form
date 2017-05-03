@@ -3,7 +3,7 @@
 <Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="Kiwi Count"/>
+    <Property name="title" type="java.lang.String" value="Kiwi Avengers"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -225,9 +225,9 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="lblKiwisCounted">
+                    <Component class="javax.swing.JLabel" name="lblCitiesCounted">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Kiwis Counted :"/>
+                        <Property name="text" type="java.lang.String" value="Saved Cities :"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -235,7 +235,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="txtKiwisCounted">
+                    <Component class="javax.swing.JLabel" name="txtCitiesCounted">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="0"/>
                       </Properties>
