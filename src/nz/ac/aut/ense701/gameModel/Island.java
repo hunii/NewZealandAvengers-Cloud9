@@ -11,6 +11,7 @@ public class Island
     private final int numColumns;
     private GridSquare[][] islandGrid;
     private Position previousPlayerPos;
+    private Position wellingtonPosition;
 
    
     /**
@@ -222,10 +223,15 @@ public class Island
         { 
             //update the occupants address
             occupant.setPosition(position);
+            if(occupant.getName().contains("Wellington"))
+                wellingtonPosition = occupant.getPosition();
         }
         return success;
     }    
 
+    public Position getWellingtonPosition(){
+        return wellingtonPosition;
+    }
     
     /**
      * Attempts to remove an occupant from a specified position on the island.

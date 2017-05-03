@@ -1,5 +1,6 @@
 package nz.ac.aut.ense701.gameModel;
 
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -7,9 +8,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import static javax.swing.UIManager.put;
 
 /**
  *Class that represent a background process that modify the game data file
@@ -44,6 +47,8 @@ public class GameOccupantRandomGenerator implements Runnable{
             
             StringBuilder allText = new StringBuilder();
             
+            HashMap<String, Point> cityPosition = new HashMap<String,Point>();
+            
             String line;
             int gridRow=0;
             int gridCol=0;
@@ -62,27 +67,40 @@ public class GameOccupantRandomGenerator implements Runnable{
                     gridCol = Integer.parseInt(lineBreaks[1]);
                 }
                 
+                int newRow = getRandPosition(gridRow);
+                int newCol = getRandPosition(gridCol);
+                
                 if(lineBreaks[0].equals("NewPlayer")){
                     change = true;
-                    lineBreaks[1] = getRandPosition(gridRow);
-                    lineBreaks[2] = getRandPosition(gridCol);
+                    lineBreaks[1] = Integer.toString(newRow);
+                    lineBreaks[2] = Integer.toString(newCol);
                 }else if(lineBreaks[0].length() == 1){
                     if(lineBreaks[0].equals("C")){
                         change = true;
-                        lineBreaks[3] = getRandPosition(gridRow);
-                        lineBreaks[4] = getRandPosition(gridCol);
+
+                        boolean dup = hasDuplicate(cityPosition, new Point(newRow,newCol));
+                        while(dup){
+                            newRow = getRandPosition(gridRow);
+                            newCol = getRandPosition(gridCol);
+                            dup = hasDuplicate(cityPosition, new Point(newRow,newCol));
+                        }
+
+                        lineBreaks[3] = Integer.toString(newRow);
+                        lineBreaks[4] = Integer.toString(newCol);
                         if(lineBreaks[1].contains("Wellington")){
                             wellingtonRow=Integer.parseInt(lineBreaks[3]);
                             wellingtonCol=Integer.parseInt(lineBreaks[4]);
                         }
+
+                        cityPosition.put(lineBreaks[1], new Point(newRow,newCol));
                     }else if(lineBreaks[0].equals("Q")){
                         change = true;
                         lineBreaks[3] = Integer.toString(wellingtonRow);
                         lineBreaks[4] = Integer.toString(wellingtonCol);
                     }else{
                         change = true;
-                        lineBreaks[3] = getRandPosition(gridRow);
-                        lineBreaks[4] = getRandPosition(gridCol);
+                        lineBreaks[3] = Integer.toString(newRow);
+                        lineBreaks[4] = Integer.toString(newCol);
                     }
                 }
                 
@@ -111,11 +129,24 @@ public class GameOccupantRandomGenerator implements Runnable{
         }
     }
     
+    private boolean hasDuplicate(HashMap<String, Point> positionCollection, Point position){
+        
+        Iterator iter = positionCollection.entrySet().iterator();
+        while(iter.hasNext()){
+            Map.Entry me = (Map.Entry)iter.next();
+            Point pos = (Point)me.getValue();
+            if(pos.x == position.x && pos.y == position.y){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     /**
      * String representation of random position integer value
      */
-    private String getRandPosition(int rowol){
-        return Integer.toString(rnd.nextInt(rowol-1));
+    private int getRandPosition(int rowol){
+        return rnd.nextInt(rowol-1);
     }
     
     /**

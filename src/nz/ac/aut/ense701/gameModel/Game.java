@@ -564,6 +564,12 @@ public class Game
         }
         else if(item instanceof Medicine){
             Medicine med = (Medicine) item;
+            if(med.getName().equals("Ambulance")){
+                Position welly = island.getWellingtonPosition();
+                Terrain  terrain     = island.getTerrain(welly);
+                player.moveToPosition(welly, terrain);
+                island.updatePlayerPosition(player);
+            }
             // player gets health boost from medicine
             player.increaseHealth(med.getEnergy());
             // player has consumed the food: remove from inventory
