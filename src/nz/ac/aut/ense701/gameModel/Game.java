@@ -541,6 +541,20 @@ public class Game
             player.drop(med);
             // use successful: everybody has to know that
             notifyGameEventListeners();
+        }else if(item instanceof QuestItem){
+            QuestItem questItem = (QuestItem) item;
+            
+            Position playerPosition = player.getPosition();
+            Occupant[] occupants = island.getOccupants(playerPosition);
+            for(Occupant o : occupants){
+                if( o instanceof City){
+                    City city = (City)o;
+                    city.fix();
+                    player.drop(questItem);
+                }
+            }
+            // use successful: everybody has to know that
+            notifyGameEventListeners();
         }
         msg.useItemMsg((Item)item);
         updateGameState();
