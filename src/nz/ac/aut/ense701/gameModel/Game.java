@@ -51,8 +51,10 @@ public class Game
     {
         totalPredators = 0;
         totalKiwis = 0;
+        totalCities = 0;
         predatorsTrapped = 0;
         kiwiCount = 0;
+        cityCount = 0;
         initialiseIslandFromFile("IslandData.txt");
         new Thread(new GameOccupantRandomGenerator("IslandData.txt")).start();
         drawIsland();
@@ -253,6 +255,33 @@ public class Game
     }
     
     /**
+     * How many cities have been counted?
+     * @return count
+     */
+    public int getCityCount()
+    {
+        return cityCount;
+    }
+    
+    /**
+     * Total City counts
+     * @return totalCount
+     */
+    public int getTotalCityCount()
+    {
+        return totalCities;
+    }
+    
+    /**
+     * How many cities are left?
+     * @return number remaining
+     */
+    public int getCitiesRemaining()
+    {
+        return cityCount;
+    }
+    
+    /**
      * How many predators are left?
      * @return number remaining
      */
@@ -385,13 +414,13 @@ public class Game
                 for(Occupant o : occupants){
                     if( o instanceof City){
                         City city = (City)o;
-                        if(city.getType() == CityType.Auckland && questItem.getName().equals("Bee"))
+                        if(city.getType() == CityType.Auckland && questItem.getName().contains("Bee"))
                             result =  true;
-                        else if(city.getType() == CityType.Christchurch && questItem.getName().equals("Building Tool"))
+                        else if(city.getType() == CityType.Christchurch && questItem.getName().contains("Building Tool"))
                             result =  true;
-                        else if(city.getType() == CityType.Oamaru && questItem.getName().equals("Blue Penguin"))
+                        else if(city.getType() == CityType.Oamaru && questItem.getName().contains("Blue Penguin"))
                             result =  true;
-                        else if(city.getType() == CityType.Bluff && questItem.getName().equals("Oyster"))
+                        else if(city.getType() == CityType.Bluff && questItem.getName().contains("Oyster"))
                             result =  true;
                     }
                 }
@@ -551,6 +580,7 @@ public class Game
                     City city = (City)o;
                     city.fix();
                     player.drop(questItem);
+                    cityCount++;
                 }
             }
             // use successful: everybody has to know that
@@ -573,6 +603,24 @@ public class Game
                 if (!kiwi.counted()) {
                     kiwi.count();
                     kiwiCount++;
+                }
+            }
+        }
+        updateGameState();
+    }
+    
+    /**
+     * Count any cities in this position
+     */
+    public void countCity() 
+    {
+        //check if there are any citiess here
+        for (Occupant occupant : island.getOccupants(player.getPosition())) {
+            if (occupant instanceof City) {
+                City city = (City) occupant;
+                if (!city.counted()) {
+                    city.count();
+                    cityCount++;
                 }
             }
         }
@@ -671,13 +719,19 @@ public class Game
             message = "Sorry, you have lost the game. You do not have sufficient stamina to move.";
             this.setLoseMessage(message);
         }
-        else if(predatorsTrapped == totalPredators)
+        /*else if(predatorsTrapped == totalPredators)
         {
             state = GameState.WON;
             message = "You win! You have done an excellent job and saved all the NZ cities.";
             this.setWinMessage(message);
+        }*/
+        else if(cityCount == totalCities)
+        {
+            state = GameState.WON;
+            message = "You win! You have saved all the cities.";
+            this.setWinMessage(message);
         }
-        else if(kiwiCount == totalKiwis)
+        /*else if(kiwiCount == totalKiwis)
         {
             if(predatorsTrapped >= totalPredators * MIN_REQUIRED_CATCH)
             {
@@ -685,7 +739,7 @@ public class Game
                 message = "You win! You have counted all the kiwi and trapped at least 80% of the predators.";
                 this.setWinMessage(message);
             }
-        }
+        }*/
         // notify listeners about changes
             notifyGameEventListeners();
     }
@@ -808,7 +862,19 @@ public class Game
      */
     private void handlePredator(Predator predator) {
         
-        predator.getAttackPower();
+            double attPower = predator.getAttackPower();
+            // Impact is a reduction in players energy by this % of Max Health
+            double reduction = player.getMaximumHealthLevel() * attPower;
+            player.reduceHealth(reduction);
+            // if health drops to zero: player is dead
+            if (player.getHealthLevel() <= 0.0) {
+                player.kill();
+                this.setLoseMessage(" You have run out of health");
+            }
+            else // Let player know what happened
+            {
+                this.setPlayerMessage(predator.getDescription() + " has reduced your health.");
+            }
                 
     }
     
@@ -941,6 +1007,7 @@ public class Game
             {
                 boolean fixed = input.nextBoolean();
                 occupant = new City(occPos, occName, occDesc,fixed);
+                totalCities++;
             }   // Q: Quest Item
             else if ( occType.equals("Q") )
             {
@@ -993,6 +1060,8 @@ public class Game
     private int kiwiCount;
     private int totalPredators;
     private int totalKiwis;
+    private int totalCities;
+    private int cityCount;
     private int predatorsTrapped;
     private Set<GameEventListener> eventListeners;
     

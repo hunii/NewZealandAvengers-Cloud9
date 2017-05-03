@@ -71,7 +71,7 @@ public class GameOccupantRandomGenerator implements Runnable{
                         change = true;
                         lineBreaks[3] = getRandPosition(gridRow);
                         lineBreaks[4] = getRandPosition(gridCol);
-                        if(lineBreaks[1].equals("Wellington")){
+                        if(lineBreaks[1].contains("Wellington")){
                             wellingtonRow=Integer.parseInt(lineBreaks[3]);
                             wellingtonCol=Integer.parseInt(lineBreaks[4]);
                         }
