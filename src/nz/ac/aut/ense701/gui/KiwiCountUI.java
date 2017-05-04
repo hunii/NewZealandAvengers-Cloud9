@@ -748,7 +748,13 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void instructionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructionButtonActionPerformed
-        // TODO add your handling code here:
+        UIManager UI=new UIManager();
+        Font font = new Font(Font.SANS_SERIF, Font.BOLD, 15);
+        UIManager.put("OptionPane.messageFont", font);
+        UIManager.put("OptionPane.buttonFont", font);
+            
+        UI.put("Panel.background", Color.WHITE);
+        JOptionPane.showMessageDialog(this,game.getInstruction(), "Instruction", JOptionPane.INFORMATION_MESSAGE );
     }//GEN-LAST:event_instructionButtonActionPerformed
 
     private void introButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_introButtonActionPerformed

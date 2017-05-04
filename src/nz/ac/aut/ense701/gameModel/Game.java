@@ -681,6 +681,29 @@ public class Game
         return story;
     }
 
+    public String getInstruction(){
+        String instruction = "                                           Instruction: \n"+
+            "*******************************************************************\n" + 
+            "\n" +
+            "Player starts off at any random position on the board and is able to move right left \n" +
+            "up or down each grid.\n" +
+            "Each grid may have a certain item to collect and it is upto the player to decide whether\n" +
+            "they want to collect the item by picking it up. \n" +
+            "There are 5 cities to visit in this game and they are \n" +
+            "Auckland,Wellington,Oamaru,Bluff and Christchurch.\n" +
+            "Wellington is the safe house.\n" +
+            "Each city has its own unique collectables.\n" +
+            "If you land on a grid that has a predator your health decreases a little.\n" +
+            "There are also health items to be collected these are to be picked up to heal the player. \n" +
+            "\n" +
+            "\n" +
+            "OBJECTIVE:\n" +
+            "Move around the grid\n" +
+            "Pick-up the different collectables and save the 4 cities \n" +
+            "Try to Avoid predators\n";
+        
+        return instruction;
+    }
     
     /**
      * Adds a game event listener.
