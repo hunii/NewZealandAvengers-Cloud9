@@ -269,7 +269,7 @@ public class Game
      */
     public int getTotalCityCount()
     {
-        return totalCities;
+        return totalCities-1;
     }
     
     /**
