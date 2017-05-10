@@ -12,6 +12,7 @@ import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
 import nz.ac.aut.ense701.gameModel.MovementKeyListener;
+import nz.ac.aut.ense701.gameModel.PanelImageHandle;
 
 /*
  * User interface form for Kiwi Avengers.
@@ -32,6 +33,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         assert game != null : "Make sure game object is created before UI";
         this.game = game;
         setAsGameListener();
+        panelImage = new PanelImageHandle();
         initComponents();
         initIslandGrid();
         MovementKeyListener moveKeyListener = new MovementKeyListener(game);
@@ -818,7 +820,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         {
             for ( int col = 0 ; col < columns ; col++ )
             {
-                pnlIsland.add(new GridSquarePanel(game, row, col));
+                pnlIsland.add(new GridSquarePanel(game,panelImage, row, col));
             }
         }
     }
@@ -853,4 +855,5 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
     // End of variables declaration//GEN-END:variables
 
     private Game game;
+    private PanelImageHandle panelImage;
 }

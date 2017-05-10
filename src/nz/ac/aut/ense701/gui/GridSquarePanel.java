@@ -2,6 +2,7 @@ package nz.ac.aut.ense701.gui;
 
 import java.awt.Color;
 import java.awt.Image;
+import javafx.scene.layout.ColumnConstraintsBuilder;
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -9,6 +10,7 @@ import nz.ac.aut.ense701.gameModel.City;
 import nz.ac.aut.ense701.gameModel.CityType;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.Occupant;
+import nz.ac.aut.ense701.gameModel.PanelImageHandle;
 import nz.ac.aut.ense701.gameModel.Terrain;
 
 /*
@@ -26,9 +28,10 @@ public class GridSquarePanel extends javax.swing.JPanel
      * @param row the row to represent
      * @param column the column to represent
      */
-    public GridSquarePanel(Game game, int row, int column)
+    public GridSquarePanel(Game game,PanelImageHandle panelImage, int row, int column)
     {
         this.game   = game;
+        this.panelImage = panelImage;
         this.row    = row;
         this.column = column;
         initComponents();
@@ -39,84 +42,34 @@ public class GridSquarePanel extends javax.swing.JPanel
      */
     public void update()
     {
-        // get the GridSquare object from the world
-        Terrain terrain   = game.getTerrain(row, column);
+
         boolean squareVisible = game.isVisible(row, column);
         boolean squareExplored = game.isExplored(row, column);
-        boolean hasOccupant = game.hasOccupant(row, column);
-        boolean hasPredator = game.hasPredator(row, column);
-        boolean hasPlayer = game.hasPlayer(row,column);
-        
-        String imageFile = "";
+
         lblText.setIcon(null);
-        
-        switch ( terrain )
-        {
-            case SAND     : imageFile = "sand";break;
-            case FOREST   : imageFile = "forest"; break;
-            case WETLAND : imageFile = "wetland";break;
-            case SCRUB : imageFile = "scrub";break;
-            case WATER    : imageFile = "water";break;
-            default  : imageFile = "ground";break;
-        }
-        
+        lblText.setBackground(null);
+
         if ( squareExplored || squareVisible )
         {
-            // Set the text of the JLabel according to the occupant
-            //lblText.setText(game.getOccupantStringRepresentation(row,column));
-            // Set the colour. 
-            if ( squareVisible && !squareExplored ) 
-            {
-                // When explored the colour is brighter
-            }
-            
-            if(hasOccupant)
-                imageFile += "-occupant";
-            
-            if(hasPredator)
-                imageFile = "predator";
-            
+            Terrain terrain   = game.getTerrain(row, column);
             Occupant[] occ = game.getOccupants(row, column);
-            for(Occupant o : occ){
-                if(o instanceof City){
-                    City city = (City)o;
-                    CityType cityType = city.getType();
-                    switch(cityType){
-                        case Auckland : imageFile = "auckland"; break;
-                        case Christchurch : imageFile = "christchurch"; break;
-                        case Bluff : imageFile = "bluff"; break;
-                        case Oamaru : imageFile = "oamaru"; break;
-                        case Wellington : imageFile = "wellington"; break;
-                    }
-                    if(city.isFixed()) imageFile += "-fixed";
-                    break;
-                }
-            }
+            boolean hasOccupant = game.hasOccupant(row, column);
+            boolean hasPredator = game.hasPredator(row, column);
+            boolean hasPlayer = game.hasPlayer(row,column);
             
-            if(hasPlayer){
+            if(hasPlayer)
                 setBorder(activeBorder);
-                imageFile = "player";
-            }else{
+            else
                 setBorder(normalBorder);
-            }
-            
-            lblText.setIcon(getResizedIcon("src/images/"+imageFile+".png"));
+            lblText.setIcon(panelImage.getIcon(terrain,occ, hasOccupant, hasPredator, hasPlayer));
         }
         else
         {
-            //lblText.setText("");
             lblText.setBackground(new Color(51,51,51));
             setBorder(normalBorder);
         }
     }
     
-    private ImageIcon getResizedIcon(String filelocation){
-        ImageIcon imageIcon = new ImageIcon(filelocation); // load the image to a imageIcon
-        Image image = imageIcon.getImage(); // transform it 
-        Image newimg = image.getScaledInstance(65, 55,  java.awt.Image.SCALE_FAST); // scale it the smooth way  
-        imageIcon = new ImageIcon(newimg);  // transform it back
-        return imageIcon;
-    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -142,6 +95,7 @@ public class GridSquarePanel extends javax.swing.JPanel
     
     private Game game;
     private int row, column;
+    private PanelImageHandle panelImage;
     
     private static final Border normalBorder = new LineBorder(Color.BLACK, 1);
     private static final Border activeBorder = new LineBorder(Color.RED, 3);
