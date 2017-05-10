@@ -2,6 +2,7 @@ package nz.ac.aut.ense701.gui;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JOptionPane;
@@ -10,6 +11,7 @@ import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
+import nz.ac.aut.ense701.gameModel.MovementKeyListener;
 
 /*
  * User interface form for Kiwi Avengers.
@@ -32,6 +34,8 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         setAsGameListener();
         initComponents();
         initIslandGrid();
+        MovementKeyListener moveKeyListener = new MovementKeyListener(game);
+        applyKeyListenerToChild(this, moveKeyListener);
         update();
     }
     
@@ -119,7 +123,6 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         listObjects.clearSelection();
         listObjects.setToolTipText(null);
         btnCollect.setEnabled(false);
-        btnCount.setEnabled(false);
         
         // update movement buttons
         btnMoveNorth.setEnabled(game.isPlayerMovePossible(MoveDirection.NORTH));
@@ -127,6 +130,16 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         btnMoveSouth.setEnabled(game.isPlayerMovePossible(MoveDirection.SOUTH));
         btnMoveWest.setEnabled( game.isPlayerMovePossible(MoveDirection.WEST));
         
+    }
+    
+    private void applyKeyListenerToChild(Container parent, MovementKeyListener mKeyListener){
+        Component[]children = parent.getComponents();
+        for(Component child : children){
+            child.addKeyListener(mKeyListener);
+            if(child instanceof Container){
+                applyKeyListenerToChild((Container)child, mKeyListener);
+            }
+        }
     }
     
     private String InputPlayerName(){
@@ -196,7 +209,6 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         javax.swing.JScrollPane scrlObjects = new javax.swing.JScrollPane();
         listObjects = new javax.swing.JList();
         btnCollect = new javax.swing.JButton();
-        btnCount = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         introButton = new javax.swing.JButton();
@@ -210,7 +222,9 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kiwi Avengers");
+        setResizable(false);
 
+        pnlContent.setBackground(new java.awt.Color(102, 102, 255));
         pnlContent.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         pnlContent.setLayout(new java.awt.BorderLayout(10, 0));
 
@@ -229,18 +243,22 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
 
         pnlControls.setLayout(new java.awt.GridBagLayout());
 
+        pnlPlayer.setBackground(new java.awt.Color(255, 204, 204));
         pnlPlayer.setBorder(javax.swing.BorderFactory.createTitledBorder("Player"));
         pnlPlayer.setLayout(new java.awt.BorderLayout());
 
+        pnlPlayerData.setBackground(new java.awt.Color(255, 204, 204));
         pnlPlayerData.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         pnlPlayerData.setLayout(new java.awt.GridBagLayout());
 
+        lblPlayerName.setBackground(new java.awt.Color(0, 153, 153));
         lblPlayerName.setText("Name:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weighty = 1.0;
         pnlPlayerData.add(lblPlayerName, gridBagConstraints);
 
+        txtPlayerName.setBackground(new java.awt.Color(0, 153, 153));
         txtPlayerName.setText("Player Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -249,6 +267,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         pnlPlayerData.add(txtPlayerName, gridBagConstraints);
 
+        lblPlayerStamina.setBackground(new java.awt.Color(0, 204, 204));
         lblPlayerStamina.setText("Stamina:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -330,11 +349,17 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         gridBagConstraints.weighty = 0.5;
         pnlControls.add(pnlPlayer, gridBagConstraints);
 
+        pnlMovement.setBackground(new java.awt.Color(0, 204, 204));
         pnlMovement.setBorder(javax.swing.BorderFactory.createTitledBorder("Movement"));
         pnlMovement.setLayout(new java.awt.GridBagLayout());
 
-        btnMoveNorth.setText("N");
+        btnMoveNorth.setBackground(new java.awt.Color(102, 102, 255));
+        btnMoveNorth.setForeground(new java.awt.Color(100, 100, 200));
+        btnMoveNorth.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/up.png"))); // NOI18N
         btnMoveNorth.setFocusable(false);
+        btnMoveNorth.setMaximumSize(new java.awt.Dimension(39, 23));
+        btnMoveNorth.setMinimumSize(new java.awt.Dimension(39, 23));
+        btnMoveNorth.setPreferredSize(new java.awt.Dimension(39, 23));
         btnMoveNorth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMoveNorthActionPerformed(evt);
@@ -349,8 +374,13 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         gridBagConstraints.weighty = 1.0;
         pnlMovement.add(btnMoveNorth, gridBagConstraints);
 
-        btnMoveSouth.setText("S");
+        btnMoveSouth.setBackground(new java.awt.Color(102, 102, 255));
+        btnMoveSouth.setForeground(new java.awt.Color(100, 100, 200));
+        btnMoveSouth.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/down.png"))); // NOI18N
         btnMoveSouth.setFocusable(false);
+        btnMoveSouth.setMaximumSize(new java.awt.Dimension(39, 23));
+        btnMoveSouth.setMinimumSize(new java.awt.Dimension(39, 23));
+        btnMoveSouth.setPreferredSize(new java.awt.Dimension(39, 23));
         btnMoveSouth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMoveSouthActionPerformed(evt);
@@ -365,8 +395,13 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         gridBagConstraints.weighty = 1.0;
         pnlMovement.add(btnMoveSouth, gridBagConstraints);
 
-        btnMoveEast.setText("E");
+        btnMoveEast.setBackground(new java.awt.Color(102, 102, 255));
+        btnMoveEast.setForeground(new java.awt.Color(100, 100, 200));
+        btnMoveEast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/right.png"))); // NOI18N
         btnMoveEast.setFocusable(false);
+        btnMoveEast.setMaximumSize(new java.awt.Dimension(39, 23));
+        btnMoveEast.setMinimumSize(new java.awt.Dimension(39, 23));
+        btnMoveEast.setPreferredSize(new java.awt.Dimension(39, 23));
         btnMoveEast.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMoveEastActionPerformed(evt);
@@ -381,8 +416,13 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         gridBagConstraints.weighty = 1.0;
         pnlMovement.add(btnMoveEast, gridBagConstraints);
 
-        btnMoveWest.setText("W");
+        btnMoveWest.setBackground(new java.awt.Color(102, 102, 255));
+        btnMoveWest.setForeground(new java.awt.Color(100, 100, 200));
+        btnMoveWest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/left.png"))); // NOI18N
         btnMoveWest.setFocusable(false);
+        btnMoveWest.setMaximumSize(new java.awt.Dimension(39, 23));
+        btnMoveWest.setMinimumSize(new java.awt.Dimension(39, 23));
+        btnMoveWest.setPreferredSize(new java.awt.Dimension(39, 23));
         btnMoveWest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMoveWestActionPerformed(evt);
@@ -405,6 +445,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         gridBagConstraints.weighty = 0.5;
         pnlControls.add(pnlMovement, gridBagConstraints);
 
+        pnlInventory.setBackground(new java.awt.Color(153, 102, 255));
         pnlInventory.setBorder(javax.swing.BorderFactory.createTitledBorder("Inventory"));
         pnlInventory.setLayout(new java.awt.GridBagLayout());
 
@@ -432,7 +473,12 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlInventory.add(scrlInventory, gridBagConstraints);
 
-        btnDrop.setText("Drop");
+        btnDrop.setBackground(new java.awt.Color(255, 255, 255));
+        btnDrop.setForeground(new java.awt.Color(100, 100, 200));
+        btnDrop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_1rsz_drop.png"))); // NOI18N
+        btnDrop.setMaximumSize(new java.awt.Dimension(61, 23));
+        btnDrop.setMinimumSize(new java.awt.Dimension(61, 23));
+        btnDrop.setPreferredSize(new java.awt.Dimension(61, 23));
         btnDrop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDropActionPerformed(evt);
@@ -448,7 +494,12 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlInventory.add(btnDrop, gridBagConstraints);
 
-        btnUse.setText("Use");
+        btnUse.setBackground(new java.awt.Color(255, 255, 255));
+        btnUse.setForeground(new java.awt.Color(100, 100, 200));
+        btnUse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_eat.jpg"))); // NOI18N
+        btnUse.setMaximumSize(new java.awt.Dimension(39, 23));
+        btnUse.setMinimumSize(new java.awt.Dimension(39, 23));
+        btnUse.setPreferredSize(new java.awt.Dimension(39, 23));
         btnUse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUseActionPerformed(evt);
@@ -472,6 +523,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         gridBagConstraints.weighty = 1.0;
         pnlControls.add(pnlInventory, gridBagConstraints);
 
+        pnlObjects.setBackground(new java.awt.Color(255, 204, 51));
         pnlObjects.setBorder(javax.swing.BorderFactory.createTitledBorder("Objects"));
         java.awt.GridBagLayout pnlObjectsLayout = new java.awt.GridBagLayout();
         pnlObjectsLayout.columnWidths = new int[] {0, 5, 0};
@@ -503,7 +555,9 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlObjects.add(scrlObjects, gridBagConstraints);
 
-        btnCollect.setText("Collect");
+        btnCollect.setBackground(new java.awt.Color(255, 255, 255));
+        btnCollect.setForeground(new java.awt.Color(100, 100, 200));
+        btnCollect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_pick_up.jpg"))); // NOI18N
         btnCollect.setToolTipText("");
         btnCollect.setMaximumSize(new java.awt.Dimension(61, 23));
         btnCollect.setMinimumSize(new java.awt.Dimension(61, 23));
@@ -523,22 +577,6 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlObjects.add(btnCollect, gridBagConstraints);
 
-        btnCount.setText("Count");
-        btnCount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCountActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlObjects.add(btnCount, gridBagConstraints);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -549,13 +587,16 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
 
         pnlContent.add(pnlControls, java.awt.BorderLayout.EAST);
 
+        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabel1.setBackground(new java.awt.Color(102, 102, 255));
         jLabel1.setFont(new java.awt.Font("Californian FB", 3, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(204, 255, 255));
         jLabel1.setText("Kiwi Avengers");
 
-        introButton.setForeground(new java.awt.Color(0, 0, 255));
+        introButton.setBackground(new java.awt.Color(102, 102, 255));
+        introButton.setForeground(new java.awt.Color(204, 255, 255));
         introButton.setText("Game Story");
         introButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -563,7 +604,8 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
             }
         });
 
-        instructionButton.setForeground(new java.awt.Color(0, 0, 255));
+        instructionButton.setBackground(new java.awt.Color(102, 102, 255));
+        instructionButton.setForeground(new java.awt.Color(204, 255, 255));
         instructionButton.setText("How to play");
         instructionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -571,7 +613,8 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
             }
         });
 
-        developerButton.setForeground(new java.awt.Color(0, 0, 255));
+        developerButton.setBackground(new java.awt.Color(102, 102, 255));
+        developerButton.setForeground(new java.awt.Color(204, 255, 255));
         developerButton.setText("Developers");
         developerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -579,7 +622,8 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
             }
         });
 
-        newGameButton.setForeground(new java.awt.Color(0, 0, 255));
+        newGameButton.setBackground(new java.awt.Color(102, 102, 255));
+        newGameButton.setForeground(new java.awt.Color(204, 255, 255));
         newGameButton.setText("New Game");
         newGameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -587,7 +631,8 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
             }
         });
 
-        exitButton.setForeground(new java.awt.Color(0, 0, 255));
+        exitButton.setBackground(new java.awt.Color(102, 102, 255));
+        exitButton.setForeground(new java.awt.Color(204, 255, 255));
         exitButton.setText("End Game");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -702,7 +747,6 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         if ( occ != null )
         {
             btnCollect.setEnabled(game.canCollect(occ));
-            btnCount.setEnabled(game.canCount(occ));
             listObjects.setToolTipText(game.getOccupantDescription(occ));
         }
     }//GEN-LAST:event_listObjectsValueChanged
@@ -721,10 +765,6 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
             listInventory.setToolTipText(game.getOccupantDescription(item));
         }
     }//GEN-LAST:event_listInventoryValueChanged
-
-    private void btnCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCountActionPerformed
-        game.countKiwi();
-    }//GEN-LAST:event_btnCountActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         int exitBut = JOptionPane.showConfirmDialog(this, "Do you want to exit the game?", "Exit?",JOptionPane.OK_CANCEL_OPTION);
@@ -785,7 +825,6 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCollect;
-    private javax.swing.JButton btnCount;
     private javax.swing.JButton btnDrop;
     private javax.swing.JButton btnMoveEast;
     private javax.swing.JButton btnMoveNorth;

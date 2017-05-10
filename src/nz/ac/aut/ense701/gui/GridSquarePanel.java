@@ -57,7 +57,7 @@ public class GridSquarePanel extends javax.swing.JPanel
             case WETLAND : imageFile = "wetland";break;
             case SCRUB : imageFile = "scrub";break;
             case WATER    : imageFile = "water";break;
-            default  : break;
+            default  : imageFile = "ground";break;
         }
         
         if ( squareExplored || squareVisible )
