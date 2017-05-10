@@ -48,6 +48,7 @@ public class GridSquarePanel extends javax.swing.JPanel
         boolean hasPlayer = game.hasPlayer(row,column);
         
         String imageFile = "";
+        lblText.setIcon(null);
         
         switch ( terrain )
         {
