@@ -6,7 +6,7 @@
 package nz.ac.aut.ense701.gameModel;
 
 /**
- *
+ * Enumeration class CityType - represents City type
  * @author James
  */
 public enum CityType {

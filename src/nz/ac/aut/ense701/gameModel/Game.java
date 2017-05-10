@@ -324,6 +324,39 @@ public class Game
     }
     
     /**
+     * Is predator in this position?
+     * @param row
+     * @param column
+     * @return true if predator is at row, column
+     */
+    public boolean hasPredator(int row, int column)
+    {
+        return island.hasPredator(new Position(island, row, column));
+    }
+    
+    /**
+     * Is occupants in this position?
+     * @param row
+     * @param column
+     * @return true if predator is at row, column
+     */
+    public boolean hasOccupant(int row, int column)
+    {
+        return island.hasOccupant(new Position(island, row, column));
+    }
+    
+    /**
+     * Get occupants in this position
+     * @param row
+     * @param column
+     * @return Array of occupants at row, column
+     */
+    public Occupant[] getOccupants(int row, int column)
+    {
+        return island.getOccupants(new Position(island, row, column));
+    }
+    
+    /**
      * Only exists for use of unit tests
      * @return island
      */

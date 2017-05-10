@@ -116,6 +116,17 @@ public class Island
         return square.hasOccupant(occupant);
     }
     
+    /**
+     * Is this occupant in this position
+     * @param position to check
+     * @return true if in this position has any occupants
+     */
+    public boolean hasOccupant(Position position)
+    {
+        GridSquare square = getGridSquare(position);
+        return square.getOccupants().length > 0 ? true:false;
+    }
+    
      /**
      * Gets the occupants of position as an array.
      * @param position to use

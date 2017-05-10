@@ -5,16 +5,29 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/Game.java</file>
-            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/test/nz/ac/aut/ense701/gameModel/PlayerTest.java</file>
-            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/GameEventListener.java</file>
-            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/test/nz/ac/aut/ense701/gameModel/GridSquareTest.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/Position.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/GameMessage.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/Occupant.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/City.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/Island.java</file>
-            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/test/gameModelNew/GameMessageTest.java</file>
-            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/test/nz/ac/aut/ense701/gameModel/IslandTest.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/MoveDirection.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/Hazard.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/QuestItem.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/GameOccupantRandomGenerator.java</file>
-            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/GridSquare.java</file>
-            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/Player.java</file>
             <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gui/KiwiCountUI.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gui/GridSquarePanel.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/Fauna.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/Player.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/Tool.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/GameState.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/Food.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/GameEventListener.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/CityType.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/Terrain.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/GridSquare.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/Kiwi.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/Predator.java</file>
+            <file>file:/D:/My%20data/AUT%20work/SE/KiwiAvengers/src/nz/ac/aut/ense701/gameModel/Medicine.java</file>
         </group>
     </open-files>
 </project-private>

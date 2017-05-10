@@ -33,6 +33,16 @@ public class Position
     }
     
     /**
+     * Constructs a position to just use as position class
+     */
+    public Position(int row, int column)
+    {
+        this.island = null;
+        this.row    = row;
+        this.column = column;
+    }
+    
+    /**
      * Constructor for objects of class Position
      * Can only construct valid positions. Invalid arguments result in exceptions.
      * @param row, row value for positions

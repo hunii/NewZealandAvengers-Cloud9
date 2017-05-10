@@ -1,6 +1,5 @@
 package nz.ac.aut.ense701.gameModel;
 
-import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -47,7 +46,7 @@ public class GameOccupantRandomGenerator implements Runnable{
             
             StringBuilder allText = new StringBuilder();
             
-            HashMap<String, Point> cityPosition = new HashMap<String,Point>();
+            HashMap<String, Position> cityPosition = new HashMap<String,Position>();
             
             String line;
             int gridRow=0;
@@ -78,11 +77,11 @@ public class GameOccupantRandomGenerator implements Runnable{
                     if(lineBreaks[0].equals("C")){
                         change = true;
 
-                        boolean dup = hasDuplicate(cityPosition, new Point(newRow,newCol));
+                        boolean dup = hasDuplicate(cityPosition, new Position(newRow,newCol));
                         while(dup){
                             newRow = getRandPosition(gridRow);
                             newCol = getRandPosition(gridCol);
-                            dup = hasDuplicate(cityPosition, new Point(newRow,newCol));
+                            dup = hasDuplicate(cityPosition, new Position(newRow,newCol));
                         }
 
                         lineBreaks[3] = Integer.toString(newRow);
@@ -92,7 +91,7 @@ public class GameOccupantRandomGenerator implements Runnable{
                             wellingtonCol=Integer.parseInt(lineBreaks[4]);
                         }
 
-                        cityPosition.put(lineBreaks[1], new Point(newRow,newCol));
+                        cityPosition.put(lineBreaks[1], new Position(newRow,newCol));
                     }else if(lineBreaks[0].equals("Q")){
                         change = true;
                         lineBreaks[3] = Integer.toString(wellingtonRow);
@@ -129,13 +128,19 @@ public class GameOccupantRandomGenerator implements Runnable{
         }
     }
     
-    private boolean hasDuplicate(HashMap<String, Point> positionCollection, Point position){
+    /**
+     * Check that collection has no same position
+     * @param positionCollection HashMap that has collection of position
+     * @param position position to check again
+     * @return 
+     */
+    private boolean hasDuplicate(HashMap<String, Position> positionCollection, Position position){
         
         Iterator iter = positionCollection.entrySet().iterator();
         while(iter.hasNext()){
             Map.Entry me = (Map.Entry)iter.next();
-            Point pos = (Point)me.getValue();
-            if(pos.x == position.x && pos.y == position.y){
+            Position pos = (Position)me.getValue();
+            if(pos.getRow() == position.getRow() && pos.getColumn() == position.getColumn()){
                 return true;
             }
         }
