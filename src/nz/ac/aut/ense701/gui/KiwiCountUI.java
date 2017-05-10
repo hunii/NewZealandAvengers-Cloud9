@@ -105,7 +105,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         
         //Update City and Predator information
         txtCitiesCounted.setText(Integer.toString(game.getCitiesRemaining())+"/"+game.getTotalCityCount() );
-        txtPredatorsLeft.setText(Integer.toString(game.getPredatorsRemaining()));
+        //txtPredatorsLeft.setText(Integer.toString(game.getPredatorsRemaining()));
         
         // update inventory list
         listInventory.setListData(game.getPlayerInventory());
@@ -180,10 +180,8 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         progPlayerHealth = new javax.swing.JProgressBar();
         javax.swing.JLabel lblBackpackWeight = new javax.swing.JLabel();
         progBackpackWeight = new javax.swing.JProgressBar();
-        lblPredators = new javax.swing.JLabel();
         lblCitiesCounted = new javax.swing.JLabel();
         txtCitiesCounted = new javax.swing.JLabel();
-        txtPredatorsLeft = new javax.swing.JLabel();
         javax.swing.JPanel pnlMovement = new javax.swing.JPanel();
         btnMoveNorth = new javax.swing.JButton();
         btnMoveSouth = new javax.swing.JButton();
@@ -308,13 +306,6 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         pnlPlayerData.add(progBackpackWeight, gridBagConstraints);
 
-        lblPredators.setText("Predators Left:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        pnlPlayerData.add(lblPredators, gridBagConstraints);
-
         lblCitiesCounted.setText("Saved Cities :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -328,13 +319,6 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlPlayerData.add(txtCitiesCounted, gridBagConstraints);
-
-        txtPredatorsLeft.setText("P");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        pnlPlayerData.add(txtPredatorsLeft, gridBagConstraints);
 
         pnlPlayer.add(pnlPlayerData, java.awt.BorderLayout.WEST);
 
@@ -415,7 +399,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
@@ -482,7 +466,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -557,7 +541,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -817,7 +801,6 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblCitiesCounted;
-    private javax.swing.JLabel lblPredators;
     private javax.swing.JList listInventory;
     private javax.swing.JList listObjects;
     private javax.swing.JLabel msgLabel;
@@ -828,7 +811,6 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
     private javax.swing.JProgressBar progPlayerStamina;
     private javax.swing.JLabel txtCitiesCounted;
     private javax.swing.JLabel txtPlayerName;
-    private javax.swing.JLabel txtPredatorsLeft;
     // End of variables declaration//GEN-END:variables
 
     private Game game;
