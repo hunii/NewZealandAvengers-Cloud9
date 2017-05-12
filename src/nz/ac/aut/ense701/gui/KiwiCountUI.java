@@ -150,12 +150,15 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         
         while("".equals(pName)) {
             pName = JOptionPane.showInputDialog("Create your character's name.");
+            
             if(pName == null){
                 game.exitGame(0);
-            }
-            if(pName.length() > 15){
-                JOptionPane.showMessageDialog(this, "Please re-insert within 15 characters.", "nameAlert", JOptionPane.INFORMATION_MESSAGE);
-                pName = null;
+            }else if(pName.length() > 10){
+                JOptionPane.showMessageDialog(this, "Please re-insert within 10 characters.", "nameLengthAlert", JOptionPane.INFORMATION_MESSAGE);
+                pName = "";
+            }else if(!(pName.matches("[a-zA-Z0-9]+"))){
+                JOptionPane.showMessageDialog(this, "Please re-insert Alphabet or Numbers Only.", "nameAlphbetAlert", JOptionPane.INFORMATION_MESSAGE);
+                pName = "";
             }
             pName = pName.replaceAll("\\s","");
         }
