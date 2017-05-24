@@ -172,7 +172,7 @@ public class Game
      * @return string of information
      */
     public String getDevelopers(){
-        return "Version: 0.1\n\nCredits to developers:\n  *   James Joung \n  *   TaeHyun Kim \n  *   Jack Kim \n  *   Megha Menon";
+        return "Version: 1.0\n\nCredits to developers:\n  *   James Joung \n  *   TaeHyun Kim \n  *   Jack Kim \n  *   Megha Menon";
     }
     
       /**
