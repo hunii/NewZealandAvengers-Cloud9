@@ -237,11 +237,11 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         pnlIsland.setLayout(pnlIslandLayout);
         pnlIslandLayout.setHorizontalGroup(
             pnlIslandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 635, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         pnlIslandLayout.setVerticalGroup(
             pnlIslandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 570, Short.MAX_VALUE)
+            .addGap(0, 567, Short.MAX_VALUE)
         );
 
         pnlContent.add(pnlIsland, java.awt.BorderLayout.CENTER);
@@ -602,7 +602,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
 
         introButton.setBackground(new java.awt.Color(102, 102, 255));
         introButton.setForeground(new java.awt.Color(204, 255, 255));
-        introButton.setText("Game Story");
+        introButton.setText("Game Story(F2)");
         introButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 introButtonActionPerformed(evt);
@@ -610,8 +610,9 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         });
 
         instructionButton.setBackground(new java.awt.Color(102, 102, 255));
+        instructionButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         instructionButton.setForeground(new java.awt.Color(204, 255, 255));
-        instructionButton.setText("How to play");
+        instructionButton.setText("How to play(F1)");
         instructionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 instructionButtonActionPerformed(evt);
@@ -620,7 +621,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
 
         developerButton.setBackground(new java.awt.Color(102, 102, 255));
         developerButton.setForeground(new java.awt.Color(204, 255, 255));
-        developerButton.setText("Developers");
+        developerButton.setText("Developers(F3)");
         developerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 developerButtonActionPerformed(evt);
@@ -629,7 +630,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
 
         newGameButton.setBackground(new java.awt.Color(102, 102, 255));
         newGameButton.setForeground(new java.awt.Color(204, 255, 255));
-        newGameButton.setText("New Game");
+        newGameButton.setText("New Game(F11)");
         newGameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newGameButtonActionPerformed(evt);
@@ -638,7 +639,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
 
         exitButton.setBackground(new java.awt.Color(102, 102, 255));
         exitButton.setForeground(new java.awt.Color(204, 255, 255));
-        exitButton.setText("End Game");
+        exitButton.setText("End Game(F12)");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitButtonActionPerformed(evt);
@@ -658,8 +659,8 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
                 .addComponent(introButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(developerButton)
-                .addGap(18, 18, 18)
-                .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(newGameButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(exitButton)
                 .addContainerGap())
@@ -695,7 +696,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(msgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
