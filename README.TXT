@@ -2,9 +2,9 @@
 This is the project README file.
 ------------------------------------------------------------------------
 
-PROJECT TITLE: Kiwi Island
-PURPOSE OF PROJECT: Programming Assignment
-VERSION or DATE: Version 2 2011
+PROJECT TITLE: Kiwi Avengers
+PURPOSE OF PROJECT: Software Engineering Group Assignment
+VERSION or DATE: Version 3.1 2017
 AUTHORS: AS
 
 AUT Software Engineering Paper.
