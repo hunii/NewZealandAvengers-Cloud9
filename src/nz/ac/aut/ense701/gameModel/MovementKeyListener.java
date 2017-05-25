@@ -11,6 +11,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import nz.ac.aut.ense701.gui.GameInstruct;
+import nz.ac.aut.ense701.gui.GameStory;
 import nz.ac.aut.ense701.gui.KiwiCountUI;
 
 /**
@@ -20,6 +23,7 @@ import nz.ac.aut.ense701.gui.KiwiCountUI;
 public class MovementKeyListener implements KeyListener  {
     private Game game;
     private KiwiCountUI kiwiUi;
+    private GameInstruct gInstruct;
     
     public MovementKeyListener(Game game){
         this.game = game;
@@ -41,21 +45,28 @@ public class MovementKeyListener implements KeyListener  {
         }else if(code == KeyEvent.VK_RIGHT){
             game.playerMove(MoveDirection.EAST);
         }else if(code == KeyEvent.VK_F1){
-            UIManager UI=new UIManager();
-            Font font = new Font(Font.SANS_SERIF, Font.BOLD, 15);
-            UIManager.put("OptionPane.messageFont", font);
-            UIManager.put("OptionPane.buttonFont", font);
-            UI.put("Panel.background", Color.WHITE);
-            JOptionPane.showMessageDialog(kiwiUi,game.getInstruction(), "Instruction", JOptionPane.INFORMATION_MESSAGE );
+            final GameInstruct gInstruct  = new GameInstruct();
+
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() 
+                {
+                    gInstruct.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    gInstruct.setVisible(true);
+                }
+            });
             
         }else if(code == KeyEvent.VK_F2){
-            UIManager UI=new UIManager();
-            Font font = new Font(Font.SANS_SERIF, Font.BOLD, 15);
-            UIManager.put("OptionPane.messageFont", font);
-            UIManager.put("OptionPane.buttonFont", font);
-            UI.put("Panel.background", Color.WHITE);
-            JOptionPane.showMessageDialog(kiwiUi,game.getGameStory(), "Introduction to Game Story", JOptionPane.INFORMATION_MESSAGE );
-            
+            final GameStory gameStory  = new GameStory();
+
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() 
+                {
+                    gameStory.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    gameStory.setVisible(true);
+                }
+            });
         }else if(code == KeyEvent.VK_F3){
             String developer = game.getDevelopers();
             JOptionPane.showMessageDialog(kiwiUi,developer,"Version & Developers",JOptionPane.INFORMATION_MESSAGE);
