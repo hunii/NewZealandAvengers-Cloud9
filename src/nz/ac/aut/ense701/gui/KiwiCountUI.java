@@ -5,8 +5,10 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
@@ -144,21 +146,23 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         }
     }
     
-    private String InputPlayerName(){
+private String InputPlayerName(){
         
         String pName = "";
         
         while("".equals(pName)) {
             pName = JOptionPane.showInputDialog("Create your character's name.");
-            
             if(pName == null){
                 game.exitGame(0);
             }else if(pName.length() > 10){
                 JOptionPane.showMessageDialog(this, "Please re-insert within 10 characters.", "nameLengthAlert", JOptionPane.INFORMATION_MESSAGE);
                 pName = "";
-            }else if(!(pName.matches("[a-zA-Z0-9]+"))){
-                JOptionPane.showMessageDialog(this, "Please re-insert Alphabet or Numbers Only.", "nameAlphbetAlert", JOptionPane.INFORMATION_MESSAGE);
-                pName = "";
+            }else{
+                boolean isValid  = game.validatePlayerName(pName);
+                if(!isValid){
+                    JOptionPane.showMessageDialog(this, "Please re-insert Alphabet or Numbers Only.", "nameAlphbetAlert", JOptionPane.INFORMATION_MESSAGE);
+                    pName = "";
+                }
             }
             pName = pName.replaceAll("\\s","");
         }
@@ -603,6 +607,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         introButton.setBackground(new java.awt.Color(102, 102, 255));
         introButton.setForeground(new java.awt.Color(204, 255, 255));
         introButton.setText("Game Story(F2)");
+        introButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         introButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 introButtonActionPerformed(evt);
@@ -613,6 +618,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         instructionButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         instructionButton.setForeground(new java.awt.Color(204, 255, 255));
         instructionButton.setText("How to play(F1)");
+        instructionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         instructionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 instructionButtonActionPerformed(evt);
@@ -622,6 +628,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         developerButton.setBackground(new java.awt.Color(102, 102, 255));
         developerButton.setForeground(new java.awt.Color(204, 255, 255));
         developerButton.setText("Developers(F3)");
+        developerButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         developerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 developerButtonActionPerformed(evt);
@@ -631,6 +638,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         newGameButton.setBackground(new java.awt.Color(102, 102, 255));
         newGameButton.setForeground(new java.awt.Color(204, 255, 255));
         newGameButton.setText("New Game(F11)");
+        newGameButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         newGameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newGameButtonActionPerformed(evt);
@@ -640,6 +648,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         exitButton.setBackground(new java.awt.Color(102, 102, 255));
         exitButton.setForeground(new java.awt.Color(204, 255, 255));
         exitButton.setText("End Game(F12)");
+        exitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitButtonActionPerformed(evt);
@@ -778,23 +787,29 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void instructionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructionButtonActionPerformed
-        UIManager UI=new UIManager();
-        Font font = new Font(Font.SANS_SERIF, Font.BOLD, 15);
-        UIManager.put("OptionPane.messageFont", font);
-        UIManager.put("OptionPane.buttonFont", font);
-            
-        UI.put("Panel.background", Color.WHITE);
-        JOptionPane.showMessageDialog(this,game.getInstruction(), "Instruction", JOptionPane.INFORMATION_MESSAGE );
+        final GameInstruct gInstruct  = new GameInstruct();
+        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() 
+            {
+                gInstruct.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                gInstruct.setVisible(true);
+            }
+        });
     }//GEN-LAST:event_instructionButtonActionPerformed
 
     private void introButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_introButtonActionPerformed
-        UIManager UI=new UIManager();
-        Font font = new Font(Font.SANS_SERIF, Font.BOLD, 15);
-        UIManager.put("OptionPane.messageFont", font);
-        UIManager.put("OptionPane.buttonFont", font);
-            
-        UI.put("Panel.background", Color.WHITE);
-        JOptionPane.showMessageDialog(this,game.getGameStory(), "Introduction to Game Story", JOptionPane.INFORMATION_MESSAGE );
+        final GameStory gameStory  = new GameStory();
+        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() 
+            {
+                gameStory.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                gameStory.setVisible(true);
+            }
+        });
     }//GEN-LAST:event_introButtonActionPerformed
 
     private void newGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtonActionPerformed

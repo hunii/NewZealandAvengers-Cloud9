@@ -28,6 +28,7 @@ public class GameStartFrame extends JFrame {
     private void initComponents() {
 
         gameStartBtn = new javax.swing.JPanel();
+        GameTitle = new javax.swing.JLabel();
         playBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
         mainLabel = new javax.swing.JLabel();
@@ -47,10 +48,18 @@ public class GameStartFrame extends JFrame {
         gameStartBtn.setOpaque(false);
         gameStartBtn.setPreferredSize(new java.awt.Dimension(833, 678));
 
+        GameTitle.setFont(new java.awt.Font("Wide Latin", 1, 48)); // NOI18N
+        GameTitle.setForeground(new java.awt.Color(102, 153, 0));
+        GameTitle.setText("Kiwi Avengers");
+
+        playBtn.setBackground(new java.awt.Color(255, 255, 255));
         playBtn.setFont(new java.awt.Font("SketchFlow Print", 1, 24)); // NOI18N
-        playBtn.setText("Play Game");
+        playBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/start_btn2.png"))); // NOI18N
         playBtn.setToolTipText("");
         playBtn.setActionCommand("Game Start");
+        playBtn.setBorderPainted(false);
+        playBtn.setContentAreaFilled(false);
+        playBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         playBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 playBtnMouseClicked(evt);
@@ -63,7 +72,10 @@ public class GameStartFrame extends JFrame {
         });
 
         exitBtn.setFont(new java.awt.Font("SketchFlow Print", 1, 24)); // NOI18N
-        exitBtn.setText("Exit Game");
+        exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/quit_btn.png"))); // NOI18N
+        exitBtn.setBorderPainted(false);
+        exitBtn.setContentAreaFilled(false);
+        exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitBtnActionPerformed(evt);
@@ -75,23 +87,30 @@ public class GameStartFrame extends JFrame {
         gameStartBtnLayout.setHorizontalGroup(
             gameStartBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gameStartBtnLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(gameStartBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(playBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(1073, Short.MAX_VALUE))
+                    .addGroup(gameStartBtnLayout.createSequentialGroup()
+                        .addComponent(GameTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gameStartBtnLayout.createSequentialGroup()
+                        .addGap(246, 246, 246)
+                        .addComponent(playBtn)))
+                .addContainerGap(409, Short.MAX_VALUE))
         );
         gameStartBtnLayout.setVerticalGroup(
             gameStartBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gameStartBtnLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(playBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(549, Short.MAX_VALUE))
+                .addGroup(gameStartBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gameStartBtnLayout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(GameTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(120, 120, 120)
+                .addComponent(playBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(297, Short.MAX_VALUE))
         );
 
-        getContentPane().add(gameStartBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 190));
+        getContentPane().add(gameStartBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 880, 440));
 
         mainLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/main_frame.png"))); // NOI18N
         getContentPane().add(mainLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 719));
@@ -133,6 +152,7 @@ public class GameStartFrame extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel GameTitle;
     private javax.swing.JButton exitBtn;
     private javax.swing.JPanel gameStartBtn;
     private javax.swing.JLabel mainLabel;
