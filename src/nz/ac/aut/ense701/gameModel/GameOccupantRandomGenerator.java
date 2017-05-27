@@ -19,7 +19,7 @@ import static javax.swing.UIManager.put;
  */
 public class GameOccupantRandomGenerator implements Runnable{
     
-    public static boolean IS_FILE_BEING_USED = true;
+    public boolean IS_FILE_BEING_USED = true;
 
     private String fileName;
     private ArrayList<String> newFileContent;
@@ -38,7 +38,7 @@ public class GameOccupantRandomGenerator implements Runnable{
     /**
      * Method that read the file and change position of occupants and modify the file
      */
-    private void RandomOccupantPosition(){
+    public void RandomOccupantPosition(){
         try{
             //Read
             FileReader file = new FileReader(fileName);
