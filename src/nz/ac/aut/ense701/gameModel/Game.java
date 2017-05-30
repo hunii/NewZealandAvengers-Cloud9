@@ -389,21 +389,6 @@ public class Game
     }
     
     /**
-     * Is this object a countable kiwi
-     * @param itemToCount
-     * @return true if is an item is a kiwi.
-     */
-    public boolean canCount(Object itemToCount)
-    {
-        boolean result = (itemToCount != null)&&(itemToCount instanceof Kiwi);
-        if(result)
-        {
-            Kiwi kiwi = (Kiwi) itemToCount;
-            result = !kiwi.counted();
-        }
-        return result;
-    }
-    /**
      * Is this object usable
      * @param itemToUse
      * @return true if is an item that can be collected.
@@ -630,24 +615,6 @@ public class Game
     }
     
     /**
-     * Count any kiwis in this position
-     */
-    public void countKiwi() 
-    {
-        //check if there are any kiwis here
-        for (Occupant occupant : island.getOccupants(player.getPosition())) {
-            if (occupant instanceof Kiwi) {
-                Kiwi kiwi = (Kiwi) occupant;
-                if (!kiwi.counted()) {
-                    kiwi.count();
-                    kiwiCount++;
-                }
-            }
-        }
-        updateGameState();
-    }
-    
-    /**
      * Count any cities in this position
      */
     public void countCity() 
@@ -714,6 +681,10 @@ public class Game
     {
         eventListeners.remove(listener);
     }
+    
+    public void updateMsg(){
+        
+    }
    
     
     /*********************************************************************************************************************************
@@ -745,21 +716,13 @@ public class Game
             message = "You win! You have done an excellent job and saved all the NZ cities.";
             this.setWinMessage(message);
         }*/
-        else if(cityCount == totalCities)
+        else if(cityCount == totalCities-1)
         {
             state = GameState.WON;
             message = "You win! You have saved all the cities.";
             this.setWinMessage(message);
         }
-        /*else if(kiwiCount == totalKiwis)
-        {
-            if(predatorsTrapped >= totalPredators * MIN_REQUIRED_CATCH)
-            {
-                state = GameState.WON;
-                message = "You win! You have counted all the kiwi and trapped at least 80% of the predators.";
-                this.setWinMessage(message);
-            }
-        }*/
+
         // notify listeners about changes
             notifyGameEventListeners();
     }
@@ -1063,11 +1026,6 @@ public class Game
             {
                 double impact = input.nextDouble();
                 occupant = new Hazard(occPos, occName, occDesc,impact);
-            }   // /K: Kiwi
-            else if ( occType.equals("K") )
-            {
-                occupant = new Kiwi(occPos, occName, occDesc);
-                totalKiwis++;
             }   // P: Predator
             else if ( occType.equals("P") )
             {

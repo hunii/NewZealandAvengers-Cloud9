@@ -22,7 +22,6 @@ import nz.ac.aut.ense701.gui.KiwiCountUI;
  */
 public class MovementKeyListener implements KeyListener  {
     private Game game;
-    private KiwiCountUI kiwiUi;
     private GameInstruct gInstruct;
     
     public MovementKeyListener(Game game){
@@ -69,12 +68,12 @@ public class MovementKeyListener implements KeyListener  {
             });
         }else if(code == KeyEvent.VK_F3){
             String developer = game.getDevelopers();
-            JOptionPane.showMessageDialog(kiwiUi,developer,"Version & Developers",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,developer,"Version & Developers",JOptionPane.INFORMATION_MESSAGE);
         }else if(code == KeyEvent.VK_F11){
-            int restartBut = JOptionPane.showConfirmDialog(kiwiUi, "Do you want to Restart the game?", "Restart?",JOptionPane.OK_CANCEL_OPTION);
+            int restartBut = JOptionPane.showConfirmDialog(null, "Do you want to Restart the game?", "Restart?",JOptionPane.OK_CANCEL_OPTION);
             game.restartGame(restartBut);
         }else if(code == KeyEvent.VK_F12){
-            int exitBut = JOptionPane.showConfirmDialog(kiwiUi, "Do you want to exit the game?", "Exit?",JOptionPane.OK_CANCEL_OPTION);
+            int exitBut = JOptionPane.showConfirmDialog(null, "Do you want to exit the game?", "Exit?",JOptionPane.OK_CANCEL_OPTION);
             game.exitGame(exitBut);
         }
     }
