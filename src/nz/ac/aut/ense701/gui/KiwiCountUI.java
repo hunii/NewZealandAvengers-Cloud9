@@ -51,7 +51,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
     public void gameStateChanged()
     {
         update();
-        
+        updateMsg();
         // check for "game over" or "game won"
         if ( game.getState() == GameState.LOST )
         {
@@ -106,10 +106,25 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         txtPlayerName.setText(game.getPlayerName());
         progPlayerStamina.setMaximum(playerValues[Game.MAXSTAMINA_INDEX]);
         progPlayerStamina.setValue(playerValues[Game.STAMINA_INDEX]);
+        if(playerValues[Game.STAMINA_INDEX] > 20){
+            progPlayerStamina.setForeground(new Color(0,102,255));
+        }else{
+            progPlayerStamina.setForeground(new Color(255,51,51));
+        }
         progPlayerHealth.setMaximum(playerValues[Game.MAXHEALTH_INDEX]);
         progPlayerHealth.setValue(playerValues[Game.HEALTH_INDEX]);
+        if(playerValues[Game.HEALTH_INDEX] > 20){
+            progPlayerHealth.setForeground(new Color(0,102,255));
+        }else{
+            progPlayerHealth.setForeground(new Color(255,51,51));
+        }
         progBackpackWeight.setMaximum(playerValues[Game.MAXWEIGHT_INDEX]);
         progBackpackWeight.setValue(playerValues[Game.WEIGHT_INDEX]);
+        if(playerValues[Game.WEIGHT_INDEX] < 8){
+            progBackpackWeight.setForeground(new Color(0,102,255));
+        }else{
+            progBackpackWeight.setForeground(new Color(255,51,51));
+        }
         
         //Update City and Predator information
         txtCitiesCounted.setText(Integer.toString(game.getCitiesRemaining())+"/"+game.getTotalCityCount() );
@@ -146,7 +161,7 @@ public class KiwiCountUI  extends javax.swing.JFrame implements GameEventListene
         }
     }
     
-private String InputPlayerName(){
+    private String InputPlayerName(){
         
         String pName = "";
         
@@ -233,7 +248,7 @@ private String InputPlayerName(){
         setTitle("Kiwi Avengers");
         setResizable(false);
 
-        pnlContent.setBackground(new java.awt.Color(102, 102, 255));
+        pnlContent.setBackground(new java.awt.Color(51, 51, 51));
         pnlContent.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         pnlContent.setLayout(new java.awt.BorderLayout(10, 0));
 
@@ -252,15 +267,16 @@ private String InputPlayerName(){
 
         pnlControls.setLayout(new java.awt.GridBagLayout());
 
-        pnlPlayer.setBackground(new java.awt.Color(255, 204, 204));
-        pnlPlayer.setBorder(javax.swing.BorderFactory.createTitledBorder("Player"));
+        pnlPlayer.setBackground(new java.awt.Color(51, 51, 51));
+        pnlPlayer.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Player", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         pnlPlayer.setLayout(new java.awt.BorderLayout());
 
-        pnlPlayerData.setBackground(new java.awt.Color(255, 204, 204));
+        pnlPlayerData.setBackground(new java.awt.Color(51, 51, 51));
         pnlPlayerData.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         pnlPlayerData.setLayout(new java.awt.GridBagLayout());
 
         lblPlayerName.setBackground(new java.awt.Color(0, 153, 153));
+        lblPlayerName.setForeground(new java.awt.Color(255, 255, 255));
         lblPlayerName.setText("Name:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -268,6 +284,7 @@ private String InputPlayerName(){
         pnlPlayerData.add(lblPlayerName, gridBagConstraints);
 
         txtPlayerName.setBackground(new java.awt.Color(0, 153, 153));
+        txtPlayerName.setForeground(new java.awt.Color(255, 255, 255));
         txtPlayerName.setText("Player Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -277,6 +294,7 @@ private String InputPlayerName(){
         pnlPlayerData.add(txtPlayerName, gridBagConstraints);
 
         lblPlayerStamina.setBackground(new java.awt.Color(0, 204, 204));
+        lblPlayerStamina.setForeground(new java.awt.Color(255, 255, 255));
         lblPlayerStamina.setText("Stamina:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -286,6 +304,7 @@ private String InputPlayerName(){
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
         pnlPlayerData.add(lblPlayerStamina, gridBagConstraints);
 
+        progPlayerStamina.setForeground(new java.awt.Color(0, 102, 255));
         progPlayerStamina.setStringPainted(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -296,6 +315,7 @@ private String InputPlayerName(){
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         pnlPlayerData.add(progPlayerStamina, gridBagConstraints);
 
+        lblPlayerHealth.setForeground(new java.awt.Color(255, 255, 255));
         lblPlayerHealth.setText("Health:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -305,6 +325,7 @@ private String InputPlayerName(){
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
         pnlPlayerData.add(lblPlayerHealth, gridBagConstraints);
 
+        progPlayerHealth.setForeground(new java.awt.Color(0, 102, 255));
         progPlayerHealth.setStringPainted(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -315,6 +336,7 @@ private String InputPlayerName(){
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         pnlPlayerData.add(progPlayerHealth, gridBagConstraints);
 
+        lblBackpackWeight.setForeground(new java.awt.Color(255, 255, 255));
         lblBackpackWeight.setText("Backpack Weight:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -324,6 +346,7 @@ private String InputPlayerName(){
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
         pnlPlayerData.add(lblBackpackWeight, gridBagConstraints);
 
+        progBackpackWeight.setForeground(new java.awt.Color(0, 102, 255));
         progBackpackWeight.setStringPainted(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -334,6 +357,7 @@ private String InputPlayerName(){
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         pnlPlayerData.add(progBackpackWeight, gridBagConstraints);
 
+        lblCitiesCounted.setForeground(new java.awt.Color(255, 255, 255));
         lblCitiesCounted.setText("Saved Cities :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -341,6 +365,7 @@ private String InputPlayerName(){
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlPlayerData.add(lblCitiesCounted, gridBagConstraints);
 
+        txtCitiesCounted.setForeground(new java.awt.Color(255, 255, 255));
         txtCitiesCounted.setText("0");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -358,11 +383,11 @@ private String InputPlayerName(){
         gridBagConstraints.weighty = 0.5;
         pnlControls.add(pnlPlayer, gridBagConstraints);
 
-        pnlMovement.setBackground(new java.awt.Color(0, 204, 204));
-        pnlMovement.setBorder(javax.swing.BorderFactory.createTitledBorder("Movement"));
+        pnlMovement.setBackground(new java.awt.Color(51, 51, 51));
+        pnlMovement.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Movement", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         pnlMovement.setLayout(new java.awt.GridBagLayout());
 
-        btnMoveNorth.setBackground(new java.awt.Color(102, 102, 255));
+        btnMoveNorth.setBackground(new java.awt.Color(51, 51, 51));
         btnMoveNorth.setForeground(new java.awt.Color(100, 100, 200));
         btnMoveNorth.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/up.png"))); // NOI18N
         btnMoveNorth.setFocusable(false);
@@ -383,7 +408,7 @@ private String InputPlayerName(){
         gridBagConstraints.weighty = 1.0;
         pnlMovement.add(btnMoveNorth, gridBagConstraints);
 
-        btnMoveSouth.setBackground(new java.awt.Color(102, 102, 255));
+        btnMoveSouth.setBackground(new java.awt.Color(51, 51, 51));
         btnMoveSouth.setForeground(new java.awt.Color(100, 100, 200));
         btnMoveSouth.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/down.png"))); // NOI18N
         btnMoveSouth.setFocusable(false);
@@ -404,7 +429,7 @@ private String InputPlayerName(){
         gridBagConstraints.weighty = 1.0;
         pnlMovement.add(btnMoveSouth, gridBagConstraints);
 
-        btnMoveEast.setBackground(new java.awt.Color(102, 102, 255));
+        btnMoveEast.setBackground(new java.awt.Color(51, 51, 51));
         btnMoveEast.setForeground(new java.awt.Color(100, 100, 200));
         btnMoveEast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/right.png"))); // NOI18N
         btnMoveEast.setFocusable(false);
@@ -425,7 +450,7 @@ private String InputPlayerName(){
         gridBagConstraints.weighty = 1.0;
         pnlMovement.add(btnMoveEast, gridBagConstraints);
 
-        btnMoveWest.setBackground(new java.awt.Color(102, 102, 255));
+        btnMoveWest.setBackground(new java.awt.Color(51, 51, 51));
         btnMoveWest.setForeground(new java.awt.Color(100, 100, 200));
         btnMoveWest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/left.png"))); // NOI18N
         btnMoveWest.setFocusable(false);
@@ -454,8 +479,8 @@ private String InputPlayerName(){
         gridBagConstraints.weighty = 0.5;
         pnlControls.add(pnlMovement, gridBagConstraints);
 
-        pnlInventory.setBackground(new java.awt.Color(153, 102, 255));
-        pnlInventory.setBorder(javax.swing.BorderFactory.createTitledBorder("Inventory"));
+        pnlInventory.setBackground(new java.awt.Color(51, 51, 51));
+        pnlInventory.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventory", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         pnlInventory.setLayout(new java.awt.GridBagLayout());
 
         listInventory.setModel(new javax.swing.AbstractListModel() {
@@ -482,12 +507,12 @@ private String InputPlayerName(){
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlInventory.add(scrlInventory, gridBagConstraints);
 
-        btnDrop.setBackground(new java.awt.Color(255, 255, 255));
-        btnDrop.setForeground(new java.awt.Color(100, 100, 200));
-        btnDrop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_1rsz_drop.png"))); // NOI18N
-        btnDrop.setMaximumSize(new java.awt.Dimension(61, 23));
-        btnDrop.setMinimumSize(new java.awt.Dimension(61, 23));
-        btnDrop.setPreferredSize(new java.awt.Dimension(61, 23));
+        btnDrop.setBackground(new java.awt.Color(51, 51, 51));
+        btnDrop.setForeground(new java.awt.Color(51, 51, 51));
+        btnDrop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/drop_btn.png"))); // NOI18N
+        btnDrop.setMaximumSize(new java.awt.Dimension(45, 23));
+        btnDrop.setMinimumSize(new java.awt.Dimension(45, 23));
+        btnDrop.setPreferredSize(new java.awt.Dimension(45, 23));
         btnDrop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDropActionPerformed(evt);
@@ -503,12 +528,12 @@ private String InputPlayerName(){
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlInventory.add(btnDrop, gridBagConstraints);
 
-        btnUse.setBackground(new java.awt.Color(255, 255, 255));
-        btnUse.setForeground(new java.awt.Color(100, 100, 200));
-        btnUse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_eat.jpg"))); // NOI18N
-        btnUse.setMaximumSize(new java.awt.Dimension(39, 23));
-        btnUse.setMinimumSize(new java.awt.Dimension(39, 23));
-        btnUse.setPreferredSize(new java.awt.Dimension(39, 23));
+        btnUse.setBackground(new java.awt.Color(51, 51, 51));
+        btnUse.setForeground(new java.awt.Color(51, 51, 51));
+        btnUse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/use_btn.png"))); // NOI18N
+        btnUse.setMaximumSize(new java.awt.Dimension(45, 23));
+        btnUse.setMinimumSize(new java.awt.Dimension(45, 23));
+        btnUse.setPreferredSize(new java.awt.Dimension(45, 23));
         btnUse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUseActionPerformed(evt);
@@ -532,8 +557,8 @@ private String InputPlayerName(){
         gridBagConstraints.weighty = 1.0;
         pnlControls.add(pnlInventory, gridBagConstraints);
 
-        pnlObjects.setBackground(new java.awt.Color(255, 204, 51));
-        pnlObjects.setBorder(javax.swing.BorderFactory.createTitledBorder("Objects"));
+        pnlObjects.setBackground(new java.awt.Color(51, 51, 51));
+        pnlObjects.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Items on ground", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         java.awt.GridBagLayout pnlObjectsLayout = new java.awt.GridBagLayout();
         pnlObjectsLayout.columnWidths = new int[] {0, 5, 0};
         pnlObjectsLayout.rowHeights = new int[] {0, 5, 0};
@@ -564,9 +589,9 @@ private String InputPlayerName(){
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pnlObjects.add(scrlObjects, gridBagConstraints);
 
-        btnCollect.setBackground(new java.awt.Color(255, 255, 255));
-        btnCollect.setForeground(new java.awt.Color(100, 100, 200));
-        btnCollect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_pick_up.jpg"))); // NOI18N
+        btnCollect.setBackground(new java.awt.Color(51, 51, 51));
+        btnCollect.setForeground(new java.awt.Color(51, 51, 51));
+        btnCollect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pickUp_btn2.png"))); // NOI18N
         btnCollect.setToolTipText("");
         btnCollect.setMaximumSize(new java.awt.Dimension(61, 23));
         btnCollect.setMinimumSize(new java.awt.Dimension(61, 23));
@@ -596,16 +621,16 @@ private String InputPlayerName(){
 
         pnlContent.add(pnlControls, java.awt.BorderLayout.EAST);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setBackground(new java.awt.Color(102, 102, 255));
+        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setFont(new java.awt.Font("Californian FB", 3, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Kiwi Avengers");
 
-        introButton.setBackground(new java.awt.Color(102, 102, 255));
-        introButton.setForeground(new java.awt.Color(204, 255, 255));
+        introButton.setBackground(new java.awt.Color(51, 51, 51));
+        introButton.setForeground(new java.awt.Color(255, 255, 255));
         introButton.setText("Game Story(F2)");
         introButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         introButton.addActionListener(new java.awt.event.ActionListener() {
@@ -614,9 +639,9 @@ private String InputPlayerName(){
             }
         });
 
-        instructionButton.setBackground(new java.awt.Color(102, 102, 255));
+        instructionButton.setBackground(new java.awt.Color(51, 51, 51));
         instructionButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        instructionButton.setForeground(new java.awt.Color(204, 255, 255));
+        instructionButton.setForeground(new java.awt.Color(255, 255, 255));
         instructionButton.setText("How to play(F1)");
         instructionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         instructionButton.addActionListener(new java.awt.event.ActionListener() {
@@ -625,8 +650,8 @@ private String InputPlayerName(){
             }
         });
 
-        developerButton.setBackground(new java.awt.Color(102, 102, 255));
-        developerButton.setForeground(new java.awt.Color(204, 255, 255));
+        developerButton.setBackground(new java.awt.Color(51, 51, 51));
+        developerButton.setForeground(new java.awt.Color(255, 255, 255));
         developerButton.setText("Developers(F3)");
         developerButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         developerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -635,8 +660,8 @@ private String InputPlayerName(){
             }
         });
 
-        newGameButton.setBackground(new java.awt.Color(102, 102, 255));
-        newGameButton.setForeground(new java.awt.Color(204, 255, 255));
+        newGameButton.setBackground(new java.awt.Color(51, 51, 51));
+        newGameButton.setForeground(new java.awt.Color(255, 255, 255));
         newGameButton.setText("New Game(F11)");
         newGameButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         newGameButton.addActionListener(new java.awt.event.ActionListener() {
@@ -645,8 +670,8 @@ private String InputPlayerName(){
             }
         });
 
-        exitButton.setBackground(new java.awt.Color(102, 102, 255));
-        exitButton.setForeground(new java.awt.Color(204, 255, 255));
+        exitButton.setBackground(new java.awt.Color(51, 51, 51));
+        exitButton.setForeground(new java.awt.Color(255, 255, 255));
         exitButton.setText("End Game(F12)");
         exitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -689,6 +714,7 @@ private String InputPlayerName(){
 
         pnlContent.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
@@ -728,33 +754,27 @@ private String InputPlayerName(){
 
     private void btnMoveEastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveEastActionPerformed
         game.playerMove(MoveDirection.EAST);
-        updateMsg();
     }//GEN-LAST:event_btnMoveEastActionPerformed
 
     private void btnMoveNorthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveNorthActionPerformed
         game.playerMove(MoveDirection.NORTH);
-        updateMsg();
     }//GEN-LAST:event_btnMoveNorthActionPerformed
 
     private void btnMoveSouthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveSouthActionPerformed
         game.playerMove(MoveDirection.SOUTH);
-        updateMsg();
     }//GEN-LAST:event_btnMoveSouthActionPerformed
 
     private void btnMoveWestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveWestActionPerformed
         game.playerMove(MoveDirection.WEST);
-        updateMsg();
     }//GEN-LAST:event_btnMoveWestActionPerformed
 
     private void btnCollectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCollectActionPerformed
         Object obj = listObjects.getSelectedValue();
         game.collectItem(obj);
-        updateMsg();
     }//GEN-LAST:event_btnCollectActionPerformed
 
     private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropActionPerformed
         game.dropItem(listInventory.getSelectedValue());
-        updateMsg();
     }//GEN-LAST:event_btnDropActionPerformed
 
     private void listObjectsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listObjectsValueChanged
@@ -768,7 +788,6 @@ private String InputPlayerName(){
 
     private void btnUseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUseActionPerformed
         game.useItem( listInventory.getSelectedValue());
-        updateMsg();
     }//GEN-LAST:event_btnUseActionPerformed
 
     private void listInventoryValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listInventoryValueChanged
